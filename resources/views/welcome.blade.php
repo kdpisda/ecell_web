@@ -79,15 +79,15 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    E-Summit 2k17
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://laravel.com/docs">E-Cell</a>
+                    <a href="https://laracasts.com">Events</a>
+                    <a href="https://laravel-news.com">E Summit</a>
+                    <a href="https://forge.laravel.com">About ud</a>
+                    <a href="https://github.com/laravel/laravel">Sponsors</a>
                 </div>
             </div>
         </div>

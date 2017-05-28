@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('branch')->nullable();
+            $table->bigInteger('contactNo');
             $table->string('institute');
             $table->enum('semester', ['I', 'III', 'V', 'VII'])->nullable();
             $table->string('password');
