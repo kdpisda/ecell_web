@@ -1,80 +1,153 @@
 <!DOCTYPE html>
-<html lang="{{ config('app.locale') }}">
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- Google CDN JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ asset ('css/base.css') }}">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="shortcut icon" href="{{ asset ('images/ecell.png') }}">
+          
+    <title>E Cell - NITRR | @yield('title')</title>
 </head>
+<nav>
+    <div class="nav-wrapper light-blue lighten-5">
+        <img src="{{ asset ('images/ecell.png') }}">
+        <a href="#!" class="brand-logo">E-Cell</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>   
+        @if (Route::has('login'))      
+            <ul class="right hide-on-med-and-down">
+                <li><a href="">Home</a></li>
+                <li><a href="">Vision</a></li>
+                <li><a href="">Events</a></li>
+                <li><a href="">Blogs</a></li>
+                <li><a href="">The Team</a></li>
+                <li><a href="">Contact Us</a></li>
+                @if (Auth::check())
+                    <li><a href="">Dashoboard</a></li>
+                @else
+                    <li><a href="/register">Register</a></li>
+                    <li><a href="/login">Login</a></li>
+                @endif
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="">Home</a></li>
+                <li><a href="">Vision</a></li>
+                <li><a href="">Events</a></li>
+                <li><a href="">Blogs</a></li>
+                <li><a href="">The Team</a></li>
+                <li><a href="">Contact Us</a></li>
+                @if (Auth::check())
+                    <li><a href="">Dashoboard</a></li>
+                @else
+                    <li><a href="">Register</a></li>
+                    <li><a href="">Login</a></li>
+                @endif
+            </ul>
+        @endif
+    </div>
+</nav>
+<div id="preloader" style="display: flex;align-items: center;justify-content: center;background-color: rgba(255,255,255,0.9);position: fixed;z-index: 1000;
+  top: 0;left: 0;right: 0;bottom: 0;" hidden>
+    <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-red">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-yellow">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-green">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>  
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready( function() {
+        $('#preloader').delay(1000).fadeOut();
+    });
+</script>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
+    @section('content')
+    @show
+</body>
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
+<footer class="page-footer light-blue lighten-5 grey-text text-darken-4">
+    <div class="container">
+        <div class="row">
+            <div class="col l4 m4 s12">
+                <div class="row">
+                    <div class="col l4 m4 s4 center">
+                       <img src="{{ asset ('images/ecell.png') }}"> 
+                    </div>
+                    <div class="col l8 m8 s8">
+                        <h6>Entrepreneurship Cell</h6>
+                    </div>
                 </div>
             </div>
-        </nav>
-
-        @yield('content')
+            <div class="col l4 m4 s12">
+                <h5>Navigate</h5>
+                <ul>
+                    <li><a class="grey-text text-darken-3" href="#!">Link 1</a></li>
+                    <li><a class="grey-text text-darken-3" href="#!">Link 2</a></li>
+                    <li><a class="grey-text text-darken-3" href="#!">Link 3</a></li>
+                    <li><a class="grey-text text-darken-3" href="#!">Link 4</a></li>
+                </ul>
+            </div>
+            <div class="col l4 m4 s12">
+                <h5>About Us</h5>
+                <ul>
+                    <li><a class="grey-text text-darken-3" href="#!">Link 1</a></li>
+                    <li><a class="grey-text text-darken-3" href="#!">Link 2</a></li>
+                    <li><a class="grey-text text-darken-3" href="#!">Link 3</a></li>
+                    <li><a class="grey-text text-darken-3" href="#!">Link 4</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-</body>
+    <div class="footer-copyright">
+        <div class="container center grey-text text-darken-4">
+            © 2017 Entrepreneurship Cell, NIT Raipur
+            <a href="#!">By Tech Team E-Cell</a>
+        </div>
+    </div>
+</footer>    
 </html>

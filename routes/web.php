@@ -15,6 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('startups', 'StartupController');
+
+Route::resource('sponsors', 'SponsorController');
+
+Route::resource('events', 'EventsController');
+
+Route::resource('login', 'LoginController');
+
+Route::resource('signup', 'SignupController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

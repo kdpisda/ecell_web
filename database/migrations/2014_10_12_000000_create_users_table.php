@@ -14,7 +14,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('user_id');
             $table->bigInteger('rollNo')->nullable();
             $table->string('name');
             $table->string('email')->unique();
@@ -22,7 +22,10 @@ class CreateUsersTable extends Migration
             $table->bigInteger('contactNo');
             $table->string('institute');
             $table->enum('semester', ['I', 'III', 'V', 'VII'])->nullable();
+            $table->enum('userType', ['ADMIN','EXECUTIVE','MANAGER','COORDINATOR','GUEST','AMBASSADOR'])->default('GUEST');
             $table->string('password');
+            $table->integer('otp');
+            $table->boolean('status');
             $table->rememberToken();
             $table->timestamps();
         });

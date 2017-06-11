@@ -1,95 +1,113 @@
-<!doctype html>
-<html lang="{{ config('app.locale') }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
+@section('title', 'Welcome')
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+@section('content')
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    E-Summit 2k17
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">E-Cell</a>
-                    <a href="https://laracasts.com">Events</a>
-                    <a href="https://laravel-news.com">E Summit</a>
-                    <a href="https://forge.laravel.com">About ud</a>
-                    <a href="https://github.com/laravel/laravel">Sponsors</a>
-                </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.slider').slider();
+    });
+</script>
+<div class="slider">
+    <ul class="slides">
+        <li>
+            <img src="http://lorempixel.com/580/250/nature/1"> <!-- random image -->
+            <div class="caption center-align">
+                <h3>E-Summit 2k17</h3>
+                <h5 class="light grey-text text-lighten-3">Trek to the zenith of glory</h5>
+            </div>
+        </li>
+        <li>
+            <img src="http://lorempixel.com/580/250/nature/2"> <!-- random image -->
+            <div class="caption left-align">
+                <h3>E-Summit 2k17</h3>
+                <h5 class="light grey-text text-lighten-3">Trek to the zenith of glory</h5>
+            </div>
+        </li>
+        <li>
+            <img src="http://lorempixel.com/580/250/nature/3"> <!-- random image -->
+            <div class="caption right-align">
+                <h3>E-Cummit 2k17</h3>
+                <h5 class="light grey-text text-lighten-3">Trek to the zenith of glory</h5>
+            </div>
+        </li>
+        <li>
+            <img src="http://lorempixel.com/580/250/nature/4"> <!-- random image -->
+            <div class="caption center-align">
+                <h3>E-Summit 2k17</h3>
+                <h5 class="light grey-text text-lighten-3">Trek to the zenith of glory</h5>
+            </div>
+        </li>s        
+    </ul>
+</div>
+<div class="row">
+    <div class="col l4 m4 s12 offset-l1 offset-m1">
+        <img src="{{ asset ('images/headset.svg') }}">
+    </div>
+    <div class="col l6 m6 s12">
+        <div class="row">
+            <div class="col l12 m12 s12">
+                <h4 class="center">OUR VISION</h4>
+                <p class="center">
+                    Our vision is that entrepreneurship is the next big thing that our country needs to exploit full potential of the innovative youth of the country, promote the economy and raise the overall quality of life in our country. At E-Cell, we try to realise our vision by developing the entrepreneurial environment by providing easy and effective interaction of the student body, experienced professionals, successful entrepreneurs, investors, venture capitalists and corporates.
+                </p>
             </div>
         </div>
-    </body>
-</html>
+        <div class="row center">
+            <div class="col l4 m4 s4">
+                <h5>Entrepreneurship Summit</h5>
+            </div>
+            <div class="col l4 m4 s4">
+                <h5>B-Quiz</h5>
+            </div>
+            <div class="col l4 m4 s4">
+                <h5>Startup Meet</h5>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row blue-grey darken-4 white-text">
+    <div class="container">
+        <div class="row">
+            <div class="col l12 m12 s12 center">
+                <h5>Our Initiatives</h5>
+            </div>
+        </div>
+        <div class="row center">
+            <div class="col l4 m4 s12">
+                <h6><strong>E-Summit</strong></h6>
+                <p>
+                    Entrepreneurship Summit. Spreading the spirit of entrepreneurship!
+                </p>
+            </div>
+            <div class="col l4 m4 s12">
+                <h6><strong>B-Quiz</strong></h6>
+            </div>
+            <div class="col l4 m4 s12">
+                <h6><strong>Wallstreet</strong></h6>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="container center">
+        <div class="col l3 m3 s12">
+            <h4>30000+</h4>
+            <p>Applications</p>
+        </div>
+        <div class="col l3 m3 s12">
+            <h4>1800+</h4>
+            <p>Ideas</p>
+        </div>
+        <div class="col l3 m3 s12">
+            <h4>150+</h4>
+            <p>Sessions</p>
+        </div>
+        <div class="col l3 m3 s12">
+            <h4>210+</h4>
+            <p>Motivators</p>
+        </div>
+    </div>
+</div>
+@endsection
