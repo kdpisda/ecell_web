@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Register')
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -9,7 +11,6 @@
                 <div class="panel-body">
                     <form class="form-horizontal" name="registerForm" role="form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
-
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name*</label>
 
@@ -39,7 +40,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('contactNo') ? ' has-error' : '' }}">
-                            <label for="contactNo" class="col-md-4 control-label">Contact No:*</label>
+                            <label for="contact_no" class="col-md-4 control-label">Contact No:*</label>
 
                             <div class="col-md-6">
                                 <input id="contactNo" type="number" class="form-control" name="contactNo" value="{{ old('contactNo') }}" required pattern="[0-9]{10}" min="1000000000" max="9999999999">
@@ -52,15 +53,15 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('rollNo') ? ' has-error' : '' }}">
-                            <label for="rollNo" class="col-md-4 control-label">Roll No / ID No</label>
+                        <div class="form-group{{ $errors->has('roll_no') ? ' has-error' : '' }}">
+                            <label for="roll_no" class="col-md-4 control-label">Roll No / ID No</label>
 
                             <div class="col-md-6">
-                                <input id="rollNo" type="number" class="form-control" name="rollNo" value="{{ old('rollNo') }}" required autofocus>
+                                <input id="roll_no" type="number" class="form-control" name="roll_no" value="{{ old('roll_no') }}" required autofocus>
 
-                                @if ($errors->has('rollNo'))
+                                @if ($errors->has('roll_no'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('rollNo') }}</strong>
+                                        <strong>{{ $errors->first('roll_no') }}</strong>
                                     </span>
                                 @endif
                             </div>

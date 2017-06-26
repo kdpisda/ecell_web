@@ -6,6 +6,9 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Lcobucci\JWT\Builder;
+use Lcobucci\JWT\Signer\Keychain; // just to make our life simpler
+use Lcobucci\JWT\Signer\Rsa\Sha256; // you can use Lcobucci\JWT\Signer\Ecdsa\Sha256 if you're using ECDSA keys
 
 class RegisterController extends Controller
 {
@@ -51,6 +54,7 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'contact_no' => 'required|min:10',
         ]);
     }
 
@@ -66,6 +70,11 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'branch' => $data['branch'],
+            'roll_no' => $data['roll_no'],
+            'contact_no'=> $data['contact_no'],
+            'institute' => $data['institute'],
+            'semester'=> $data['semester'],
         ]);
     }
 }

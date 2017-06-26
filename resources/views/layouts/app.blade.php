@@ -17,7 +17,7 @@
 
     <link rel="shortcut icon" href="{{ asset ('images/ecell.png') }}">
           
-    <title>E Cell - NITRR | @yield('title')</title>
+    <title>E-Cell | @yield('title')</title>
 </head>
 <nav>
     <div class="nav-wrapper light-blue lighten-5">
@@ -114,14 +114,10 @@
     <div class="container">
         <div class="row">
             <div class="col l4 m4 s12">
-                <div class="row">
-                    <div class="col l4 m4 s4 center">
-                       <img src="{{ asset ('images/ecell.png') }}"> 
-                    </div>
-                    <div class="col l8 m8 s8">
-                        <h6>Entrepreneurship Cell</h6>
-                    </div>
-                </div>
+                <ul>
+                    <li><img src="images/ecell.png"></li>
+                </ul>
+                <h5>Entrepreneurship Cell<br> NIT Raipur</h5>
             </div>
             <div class="col l4 m4 s12">
                 <h5>Navigate</h5>

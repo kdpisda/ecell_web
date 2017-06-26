@@ -1,14 +1,26 @@
 @extends('layouts.app')
 
-@section('title', 'Welcome')
+@section('title', 'NIT Raipur')
 
 @section('content')
 
 <script type="text/javascript">
     $(document).ready(function(){
+        $('#tour_modal').modal('open');
         $('.slider').slider();
+        $('.parallax').parallax();
     });
 </script>
+<div id="tour_modal" class="modal">
+    <div class="modal-content">
+      <h4>Hello,</h4>
+      <p>Why not take a tour.</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action waves-effect waves-green btn-flat">Sure</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">No Thanks</a>
+    </div>
+</div>
 <div class="slider">
     <ul class="slides">
         <li>
@@ -89,6 +101,9 @@
             </div>
         </div>
     </div>
+</div>
+<div class="parallax-container">
+  <div class="parallax"><img src="images/sample_pic.png"></div>
 </div>
 <div class="row">
     <div class="container center">

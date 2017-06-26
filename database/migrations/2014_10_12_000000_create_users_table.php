@@ -15,17 +15,17 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('user_id');
-            $table->bigInteger('rollNo')->nullable();
+            $table->bigInteger('roll_no')->nullable();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('branch')->nullable();
-            $table->bigInteger('contactNo');
+            $table->bigInteger('contact_no');
             $table->string('institute');
             $table->enum('semester', ['I', 'III', 'V', 'VII'])->nullable();
-            $table->enum('userType', ['ADMIN','EXECUTIVE','MANAGER','COORDINATOR','GUEST','AMBASSADOR'])->default('GUEST');
+            $table->enum('user_type', ['ADMIN','EXECUTIVE','MANAGER','COORDINATOR','GUEST','AMBASSADOR'])->default('GUEST');
             $table->string('password');
-            $table->integer('otp');
-            $table->boolean('status');
+            $table->integer('otp')->default(0);
+            $table->boolean('status')->default(False);
             $table->rememberToken();
             $table->timestamps();
         });
