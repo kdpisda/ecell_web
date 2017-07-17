@@ -19,7 +19,7 @@
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <h1>{{ $events }} Events</h1>
+                        <h1> Events</h1>
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <h1>{{ $users }} Users</h1>
+                        <h1> Users</h1>
                     </div>
                 </div>
             </div>

@@ -6,9 +6,9 @@ use App\Event;
 use Auth;
 use Illuminate\Http\Request;
 
-class EventController extends Controller
+class EventsController extends Controller
 {
-    
+     
     public function __construct(){
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
@@ -43,14 +43,19 @@ class EventController extends Controller
     {
         $Event = new Event;
 
-        $Event->heading = $request->heading;
+        $Event->title = $request->heading;
         $Event->description = $request->description;
         $Event->status = 'inprocess';
+        $Event->details = $request->details;
+        $Event->meta = $request->meta;
+        $Event->venue = $request->venue;
+        $Event->date = $request->data;
+        $Event->time = $request->time;
         $Event->user_id = Auth::id();
 
         if($Event->save()) {
             var_dump('added!');
-        }
+        } 
     }
 
     /**

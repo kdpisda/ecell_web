@@ -1,7 +1,8 @@
-@extends('layouts.admin_panel')
-@section('title', 'Admin Panel')
+@extends('layouts.app')
+@section('title', 'Events')
 
 @section('content')
+@parent
 <div class="container">
     <center>
         <div class="row">
@@ -19,7 +20,7 @@
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <h1>{{ $events }} Events</h1>
+                        <h1> Events</h1>
                     </div>
                 </div>
             </div>
@@ -45,7 +46,7 @@
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <h1>{{ $users }} Users</h1>
+                        <h1> Users</h1>
                     </div>
                 </div>
             </div>
@@ -87,56 +88,54 @@
             <h4 class="modal-title" id="gridSystemModalLabel">Add an event</h4>
           </div>
           <div class="modal-body">
-            <form role="form" method="POST" action="{{ route('events.store') }}">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="input-group">
-                            <span class="input-group-addon" id="event_title">Title</span>
-                            <input type="text" class="form-control" placeholder="Event Title" name="title">
-                        </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="event_title">Title</span>
+                        <input type="text" class="form-control" placeholder="Event Title">
                     </div>
-                </div><br>
-                <div class="row">
-                  <div class="col-lg-12">
-                        <div class="input-group">
-                            <span class="input-group-addon" id="event_description">Description</span>
-                            <input type="text" class="form-control" placeholder="Event Description" name="description">
-                        </div>
+                </div>
+            </div><br>
+            <div class="row">
+              <div class="col-lg-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="event_description">Description</span>
+                        <input type="text" class="form-control" placeholder="Event Description">
                     </div>
-                </div><br>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="input-group">
-                            <span class="input-group-addon" id="event_detail">Detail</span>
-                            <textarea placeholder="Event Details" class="form-control" rows="5" name="details"></textarea>
-                        </div>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="event_detail">Detail</span>
+                        <textarea placeholder="Event Details"></textarea>
                     </div>
-                </div><br> 
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="input-group">
-                            <span class="input-group-addon" id="event_image">Image</span>
-                            <input type="file" class="form-control" placeholder="Event Image" name="meta">
-                        </div>
+                </div>
+            </div><br> 
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="event_image">Image</span>
+                        <input type="file" class="form-control" placeholder="Event Image">
                     </div>
-                </div><br>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="input-group">
-                            <span class="input-group-addon" id="event_venue">Venue</span>
-                            <input type="text" class="form-control" placeholder="Event Venue" name="venue">
-                        </div>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="event_venue">Venue</span>
+                        <input type="text" class="form-control" placeholder="Event Venue">
                     </div>
-                </div><br>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="input-group">
-                            <span class="input-group-addon" id="event_time">Time</span>
-                            <input type="datetime" class="form-control" placeholder="Event Time">
-                        </div>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="event_time">Time</span>
+                        <input type="datetime" class="form-control" placeholder="Event Time">
                     </div>
-                </div><br>
-            </form>
+                </div>
+            </div><br>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

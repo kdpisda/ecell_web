@@ -39,15 +39,15 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('contactNo') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('contact_no') ? ' has-error' : '' }}">
                             <label for="contact_no" class="col-md-4 control-label">Contact No:*</label>
 
                             <div class="col-md-6">
-                                <input id="contactNo" type="number" class="form-control" name="contactNo" value="{{ old('contactNo') }}" required pattern="[0-9]{10}" min="1000000000" max="9999999999">
+                                <input id="contact_no" type="text" class="form-control" name="contact_no" value="{{ old('contact_no') }}" required pattern="[0-9]{10}" min="1000000000" max="9999999999">
 
-                                @if ($errors->has('contactNo'))
+                                @if ($errors->has('contact_no'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('contactNo') }}</strong>
+                                        <strong>{{ $errors->first('contact_no') }}</strong>
                                     </span>
                                 @endif
                             </div>
