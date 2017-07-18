@@ -1,17 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Event;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EventsController extends Controller
 {
-     
-    public function __construct(){
-        $this->middleware('auth', ['except' => ['index', 'show']]);
-    }
     /**
      * Display a listing of the resource.
      *
@@ -30,7 +26,7 @@ class EventsController extends Controller
      */
     public function create()
     {
-        return view('events.create');
+        //
     }
 
     /**
@@ -41,41 +37,41 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-        $Event = new Event;
+        $event = new Event;
 
-        $Event->title = $request->heading;
-        $Event->description = $request->description;
-        $Event->status = 'inprocess';
-        $Event->details = $request->details;
-        $Event->meta = $request->meta;
-        $Event->venue = $request->venue;
-        $Event->date = $request->data;
-        $Event->time = $request->time;
-        $Event->user_id = Auth::id();
+        $event->title = $request->title;
+        $event->description = $request->description;
+        $event->details = $request->details;
+        $event->venue = $request->venue;
+        $event->user_id = Auth::id();
+        $metaName = time().'.'.$request->meta->getClientOriginalExtension();
+        $request->meta->move(public_path('uploads/events'), $metaName);
+        $event->meta = $metaName;
 
-        if($Event->save()) {
+        if($event->save()) {
             var_dump('added!');
-        } 
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Event  $Event
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $Event)
+    public function show($id)
     {
-        //
+        $event = DB::table('events')->where('event_id', '=', $id)->get();
+        return view('events.show', ['event' => $event]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Event  $Event
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $Event)
+    public function edit($id)
     {
         //
     }
@@ -84,10 +80,10 @@ class EventsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Event  $Event
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $Event)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -95,10 +91,10 @@ class EventsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Event  $Event
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $Event)
+    public function destroy($id)
     {
         //
     }

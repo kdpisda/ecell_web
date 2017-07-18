@@ -80,7 +80,8 @@
           <ul class="dropdown-menu">
             <li><a href="{{ url ('my_profile') }}">My Profile</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="/logout">Logout</a></li>
+            <li><a href="http://127.0.0.1:8000/logout" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Logout</a></li>
           </ul>
         </li>
       </ul>
@@ -107,5 +108,8 @@
     </div>
   </div>
 </div>
+<form id="logout-form" action="http://127.0.0.1:8000/logout" method="POST" style="display: none;">
+  {{ csrf_field() }}
+</form>
   </body>
 </html>

@@ -29,6 +29,8 @@ Auth::routes();
 
 Route::get('/profile','HomeController@my_profile')->name('my_pofile');
 
+Route::get('/events/{id}','EventsController@show');
+
 //Route::middleware('auth_panel')->group(function () {
 
 	Route::get('/home', 'HomeController@admin_panel')->name('home');
@@ -44,3 +46,7 @@ Route::get('/profile','HomeController@my_profile')->name('my_pofile');
 	Route::get('/ambassador_panel', 'HomeController@ambassador_panel')->name('ambassador_panel');
 
 //});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
