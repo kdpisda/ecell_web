@@ -14,6 +14,8 @@
                             <?php echo e($event_item->title); ?>
 
                         </h3>
+                        <input type="hidden" name="event_id" value="<?php echo e($event_item->event_id); ?>">
+                        <span class="glyphicon glyphicon-option-vertical" id="event_id"></span>
                     </div>
                     <div class="panel-body">
                         <?php if($event_item->meta == ''): ?>

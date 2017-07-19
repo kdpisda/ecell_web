@@ -30,23 +30,28 @@ Auth::routes();
 Route::get('/profile','HomeController@my_profile')->name('my_pofile');
 
 Route::get('/events/{id}','EventsController@show');
+Route::get('/events/get_event_detail/{id}','EventsController@get_event_detail');
 
 //Route::middleware('auth_panel')->group(function () {
 
-	Route::get('/home', 'HomeController@admin_panel')->name('home');
+Route::get('/home', 'HomeController@aindex')->name('home');
 
-	Route::get('/admin_panel', 'HomeController@admin_panel')->name('admin_panel');
+// Route::get('/admin_panel', 'HomeController@admin_panel')->name('admin_panel');
 
-	Route::get('/coordinator_panel', 'HomeController@coordinator_panel')->name('coordinator_panel');
+Route::get('/coordinator_panel', 'HomeController@coordinator_panel')->name('coordinator_panel');
 
-	Route::get('/manager_panel', 'HomeController@manager_panel')->name('manager_panel');
+Route::get('/manager_panel', 'HomeController@manager_panel')->name('manager_panel');
 
-	Route::get('/executive_panel', 'HomeController@executive_panel')->name('executive_panel');
+Route::get('/executive_panel', 'HomeController@executive_panel')->name('executive_panel');
 
-	Route::get('/ambassador_panel', 'HomeController@ambassador_panel')->name('ambassador_panel');
+Route::get('/ambassador_panel', 'HomeController@ambassador_panel')->name('ambassador_panel');
 
 //});
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/admin','AdminController@index')->name('admin');
+
+Route::get('/admin/events','AdminController@events')->name('admin_events');

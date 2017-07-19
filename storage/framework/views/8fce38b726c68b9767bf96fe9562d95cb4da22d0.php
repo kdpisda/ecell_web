@@ -19,16 +19,59 @@
         <script src="js/jquery.js"></script>
         <script src="js/uikit.min.js"></script>
         <script src="js/uikit-icons.min.js"></script> -->
+    <style type="text/css">
+  #preloader {
+    display: flex;align-items: center;justify-content: center;background-color: #fff;position: fixed;z-index: 1000;
+    top: 0;left: 0;right: 0;bottom: 0;
+  }
+  .loader {
+    border: 5px solid #010C15;
+    border-radius: 50%;
+    border-top: 5px solid #FBA10E;
+    border-bottom: 5px solid #FBA10E;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  }
+
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+
+  @keyframes  spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+<div id="preloader">
+  <div class="panel panel-default">
+    <div class="panel-heading" style="text-align: center;">
+      E-Cell Admin Panel
+    </div>
+    <div class="panel-body">
+      <center>
+        <!-- <img src="/images/esummit_black.png" height="100px"> -->
+        <div class="loader">
+        </div>
+      </center>
+    </div>
+    <div class="panel-footer" style="text-align: center;">
+        Loading...
+    </div>
+  </div>
+</div>
   </head>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <a class="navbar-brand" href="#">
-        <img alt="Brand" src="images/ecell.png" height="100%">
+        <img alt="Brand" src="/images/ecell.png" height="100%">
       </a>
       <a class="navbar-brand" href="#">
-        <img alt="Brand" src="images/esummit_black.png" height="100%">
+        <img alt="Brand" src="/images/esummit_black.png" height="100%">
       </a>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
@@ -46,7 +89,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Events <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="<?php echo e(url ('events')); ?>">All Events</a></li>
+            <li><a href="<?php echo e($admin_event); ?>">All Events</a></li>
             <li><a href="" data-toggle="modal" data-target="#add_event_modal">Create an Event</a></li>
           </ul>
         </li>
@@ -92,25 +135,30 @@
   <?php $__env->startSection('content'); ?>
   <?php echo $__env->yieldSection(); ?>
   <div class="modal fade" id="createEvent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 <form id="logout-form" action="http://127.0.0.1:8000/logout" method="POST" style="display: none;">
   <?php echo e(csrf_field()); ?>
 
 </form>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#preloader').delay(1000).fadeOut();
+  });
+</script>
   </body>
 </html>

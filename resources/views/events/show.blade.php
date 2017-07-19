@@ -14,6 +14,8 @@
                             <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
                             {{ $event_item->title }}
                         </h3>
+                        <input type="hidden" name="event_id" value="{{ $event_item->event_id }}">
+                        <span class="glyphicon glyphicon-option-vertical" id="event_id"></span>
                     </div>
                     <div class="panel-body">
                         @if($event_item->meta == '')

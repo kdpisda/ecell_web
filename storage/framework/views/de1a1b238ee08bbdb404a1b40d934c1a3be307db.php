@@ -31,7 +31,7 @@
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <h1>0 Start-ups</h1>
+                        <h1><?php echo e($startups); ?> Start-ups</h1>
                     </div>
                 </div>
             </div>
@@ -149,4 +149,4 @@
 </div>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('layouts.admin_panel', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,6 +1,7 @@
-<?php $__env->startSection('title', 'Admin Panel'); ?>
+@extends('layouts.admin_panel')
+@section('title', 'Admin Panel')
 
-<?php $__env->startSection('content'); ?>
+@section('content')
 <div class="container">
     <center>
         <div class="row">
@@ -18,7 +19,7 @@
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <h1><?php echo e($events); ?> Events</h1>
+                        <h1>{{ $events }} Events</h1>
                     </div>
                 </div>
             </div>
@@ -31,7 +32,7 @@
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <h1>0 Start-ups</h1>
+                        <h1>{{ $startups }} Start-ups</h1>
                     </div>
                 </div>
             </div>
@@ -44,7 +45,7 @@
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <h1><?php echo e($users); ?> Users</h1>
+                        <h1>{{ $users }} Users</h1>
                     </div>
                 </div>
             </div>
@@ -81,9 +82,8 @@
     <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="add_event_modal">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form role="form" enctype="multipart/form-data" method="POST" action="<?php echo e(route('events.store')); ?>">
-                <?php echo e(csrf_field()); ?>
-
+            <form role="form" enctype="multipart/form-data" method="POST" action="{{ route('events.store') }}">
+                {{ csrf_field() }}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="gridSystemModalLabel">Add an event</h4>
@@ -147,6 +147,4 @@
       </div>
     </div>
 </div>
-<?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+@endsection

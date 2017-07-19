@@ -98,4 +98,15 @@ class EventsController extends Controller
     {
         //
     }
+
+    public function get_event_detail($id){
+        $event = DB::table('events')->where('event_id', '=', $id)->get();
+        return response()->json([
+            'event_id' => $event[0]->event_id,
+            'event_name' => $event[0]->title,
+            'event_details'=> $event[0]->details,
+            'event_description'=> $event[0]->description,
+            'event_pic' => $event[0]->meta,
+        ]);
+    }
 }
