@@ -101,6 +101,13 @@
           </ul>
         </li>
         <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sponsors <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="<?php echo e($admin_event); ?>">All Sponsors</a></li>
+            <li><a href="" data-toggle="modal" data-target="#add_event_modal">Add a sponsor</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">The Team<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Co-Ordinators</a></li>

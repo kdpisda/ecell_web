@@ -31,6 +31,7 @@ Route::get('/profile','HomeController@my_profile')->name('my_pofile');
 
 Route::get('/events/{id}','EventsController@show');
 Route::get('/events/get_event_detail/{id}','EventsController@get_event_detail');
+Route::get('/events/update_event', 'EventsController@update')->name('update_event');
 
 //Route::middleware('auth_panel')->group(function () {
 
@@ -45,6 +46,8 @@ Route::get('/manager_panel', 'HomeController@manager_panel')->name('manager_pane
 Route::get('/executive_panel', 'HomeController@executive_panel')->name('executive_panel');
 
 Route::get('/ambassador_panel', 'HomeController@ambassador_panel')->name('ambassador_panel');
+
+Route::get('/wp_testing','WptestingController@index')->name('wp-testing');
 
 //});
 

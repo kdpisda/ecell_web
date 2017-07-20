@@ -38,7 +38,6 @@ class EventsController extends Controller
     public function store(Request $request)
     {
         $event = new Event;
-
         $event->title = $request->title;
         $event->description = $request->description;
         $event->details = $request->details;
@@ -84,8 +83,42 @@ class EventsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+        try {
+            if($request->meta != null){
+                $metaName = time().'.'.$request->meta->getClientOriginalExtension();
+            }
+            else $metaName = null;
+            Event::where('event_id', $id)
+                ->update([
+                    'title' => $request->title,
+                    'description' => $request->description,
+                    'details' => $request->details,
+                    'venue' => $request->venue,
+                    'user_id' => Auth::id(),
+                    'meta' => $metaName,
+                    ]);
+        } catch (Exception $e) {
+            Event::where('event_id', $id)
+                ->update([
+                    'title' => $request->title,
+                    'description' => $request->description,
+                    'details' => $request->details,
+                    'venue' => $request->venue,
+                    'user_id' => Auth::id(),                    
+                    ]);
+            var_dump($e);
+        }
+        // DB::table('events')
+        //     ->where('event_id', $request->event_id)
+        //     ->update([
+                
+        //     ]);
+        $metaName = time().'.'.$request->meta->getClientOriginalExtension();
+        $request->meta->move(public_path('uploads/events'), $metaName);
+        // if($event->save()) {
+            var_dump('updated!');
+        // }
     }
 
     /**
@@ -104,9 +137,11 @@ class EventsController extends Controller
         return response()->json([
             'event_id' => $event[0]->event_id,
             'event_name' => $event[0]->title,
-            'event_details'=> $event[0]->details,
+            'event_detail'=> $event[0]->details,
             'event_description'=> $event[0]->description,
             'event_pic' => $event[0]->meta,
+            'event_venue' => $event[0]->venue,
+            'event_time' => $event[0]->time,
         ]);
     }
 }
