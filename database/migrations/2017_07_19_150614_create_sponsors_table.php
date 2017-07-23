@@ -19,7 +19,6 @@ class CreateSponsorsTable extends Migration
             $table->string('description', 64);
             $table->string('owner', 2048);
             $table->string('meta');
-            $table->string('venue',256);
             $table->string('contact_no');
             $table->string('contact_email');
             $table->string('address');

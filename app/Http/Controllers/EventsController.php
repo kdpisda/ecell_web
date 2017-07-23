@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class EventsController extends Controller
 {
+    
+    public function __construct(){
+        $this->middleware('auth', ['except' => ['index', 'show','get_event_detail']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +20,9 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $data = Event::all();
+        $data = DB::table('events')->where(
+                'status','=','approved'
+            )->get();
         return view('events.index', ['events' => $data]);
     }
 
@@ -38,7 +45,6 @@ class EventsController extends Controller
     public function store(Request $request)
     {
         $event = new Event;
-
         $event->title = $request->title;
         $event->description = $request->description;
         $event->details = $request->details;
@@ -49,7 +55,7 @@ class EventsController extends Controller
         $event->meta = $metaName;
 
         if($event->save()) {
-            var_dump('added!');
+            return redirect('/admin/events');
         }
     }
 
@@ -60,8 +66,13 @@ class EventsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $event = DB::table('events')->where('event_id', '=', $id)->get();
+    {   
+        $len = strlen($id);
+        $event_id = intval(substr($id, 8));        
+        $event = DB::table('events')->where([
+                ['event_id', '=', $event_id ],
+                ['status','=','approved']
+            ])->get();
         return view('events.show', ['event' => $event]);
     }
 
@@ -84,8 +95,27 @@ class EventsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+        $metaName = time().'.'.$request->meta->getClientOriginalExtension();
+        Event::where('event_id', $id)
+            ->update([
+                'title' => $request->title,
+                'description' => $request->description,
+                'details' => $request->details,
+                'venue' => $request->venue,
+                'user_id' => Auth::id(),
+                'meta' => $metaName,
+                ]);
+        // DB::table('events')
+        //     ->where('event_id', $request->event_id)
+        //     ->update([
+                
+        //     ]);
+        $metaName = time().'.'.$request->meta->getClientOriginalExtension();
+        $request->meta->move(public_path('uploads/events'), $metaName);
+        // if($event->save()) {
+            return redirect('/admin/events');
+        // }
     }
 
     /**
@@ -104,9 +134,62 @@ class EventsController extends Controller
         return response()->json([
             'event_id' => $event[0]->event_id,
             'event_name' => $event[0]->title,
-            'event_details'=> $event[0]->details,
+            'event_detail'=> $event[0]->details,
             'event_description'=> $event[0]->description,
             'event_pic' => $event[0]->meta,
+            'event_venue' => $event[0]->venue,
+            'event_time' => $event[0]->time,
         ]);
+    }
+
+    public function approve_event($id){
+        $user = Auth::user();
+        if($user->user_type == "ADMIN"){
+            try{
+                $temp_event = Event::where('event_id',$id)
+                            ->update(['status' => 'approved']);
+                return response()->json([
+                    'flag' => true,
+                    'message' => 'Event has been approved successfully'
+                ]);
+            }
+            catch (Exception $e) {
+                return response()->json([
+                    'flag' => false,
+                    'message' => 'Sorry an error occured'
+                ]);   
+            }
+        }
+        else {
+            return response()->json([
+                    'flag' => false,
+                    'message' => 'You do not have sufficient privilage'
+                ]);   
+        }
+    }
+    public function unapprove_event($id){
+        $user = Auth::user();
+        if($user->user_type == "ADMIN"){
+            try{
+                $temp_event = Event::where('event_id',$id)
+                            ->update(['status' => 'unapproved']);
+                return response()->json([
+                    'flag' => true,
+                    'message' => 'Event has been unapproved successfully you can approve it again whenever you want'
+                ]);
+            }
+            catch (Exception $e) {
+                return response()->json([
+                    'flag' => false,
+                    'message' => 'Sorry an error occured'
+                ]);   
+            }
+        }
+        else {
+            return response()->json([
+                    'flag' => false,
+                    'message' => 'You do not have sufficient privilage'
+                ]);   
+        }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Speaker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -22,7 +23,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(){
+        $speakers = Speaker::all();
+        return view('welcome',['speakers' => $speakers]);
+    }
+
+    public function welcome()
     {   
         $users = DB::table('users')->count();
         $events = DB::table('events')->count();

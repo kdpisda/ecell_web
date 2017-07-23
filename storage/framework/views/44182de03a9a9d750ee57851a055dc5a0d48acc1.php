@@ -31,7 +31,13 @@
                                 </td>
                                 <td><?php echo e($event->title); ?></td>
                                 <td><?php echo e($event->description); ?></td>
-                                <td><?php echo e($event->status); ?></td>                                
+                                <td>
+                                    <select class="form-control" id="event_status">
+                                        <option value="1">Approve</option>
+                                        <option value="0">Unapprove</option>
+                                    </select>
+                                </td>
+                                <!-- <td><?php echo e($event->status); ?></td>                                 -->
                                 <td><?php echo e($event->created_at); ?></td>
                                 <td><?php echo e($event->mdified_at); ?></td>
                                 <td><button type="button" class="btn btn-default" onclick="edit_event(<?php echo e($event->event_id); ?>)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>
@@ -69,8 +75,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="input-group">
-                        <span class="input-group-addon" id="event_title">Title</span>
-                        <input type="text" class="form-control" placeholder="Event Title">
+                        <span class="input-group-addon">Title</span>
+                        <input type="text" class="form-control" placeholder="Event Title" id="event_title">
                     </div>
                 </div>
             </div><br>
@@ -126,9 +132,12 @@
 <div class="modal fade" tabindex="-1" role="dialog" id="edit_event_modal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form role="form" enctype="multipart/form-data" method="POST" action="<?php echo e(route('events.store')); ?>">
+            <form role="form" enctype="multipart/form-data" method="POST" action="#" id="edit_event_form">
                 <?php echo e(csrf_field()); ?>
 
+                <?php echo e(method_field('PUT')); ?>
+
+                <input type="hidden" name="event_id">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="gridSystemModalLabel">Edit event</h4>
@@ -137,48 +146,48 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="input-group">
-                                <span class="input-group-addon" id="event_title">Title</span>
-                                <input type="text" class="form-control" placeholder="Event Title" name="title">
+                                <span class="input-group-addon">Title</span>
+                                <input type="text" class="form-control" placeholder="Event Title" name="title" id="edit_event_title">
                             </div>
                         </div>
                     </div><br>
                     <div class="row">
                       <div class="col-lg-12">
                             <div class="input-group">
-                                <span class="input-group-addon" id="event_description">Description</span>
-                                <input type="text" class="form-control" placeholder="Event Description" name="description">
+                                <span class="input-group-addon">Description</span>
+                                <input type="text" class="form-control" placeholder="Event Description" name="description" id="edit_event_description">
                             </div>
                         </div>
                     </div><br>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="input-group">
-                                <span class="input-group-addon" id="event_detail">Detail</span>
-                                <textarea placeholder="Event Details" class="form-control" rows="5" name="details"></textarea>
+                                <span class="input-group-addon">Detail</span>
+                                <textarea placeholder="Event Details" class="form-control" rows="5" name="details" id="edit_event_detail"></textarea>
                             </div>
                         </div>
                     </div><br> 
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="input-group">
-                                <span class="input-group-addon" id="event_image">Image</span>
-                                <input type="file" class="form-control" placeholder="Event Image" name="meta">
+                                <span class="input-group-addon">Image</span>
+                                <input type="file" class="form-control" placeholder="Event Image" name="meta" id="edit_event_image">
                             </div>
                         </div>
                     </div><br>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="input-group">
-                                <span class="input-group-addon" id="event_venue">Venue</span>
-                                <input type="text" class="form-control" placeholder="Event Venue" name="venue">
+                                <span class="input-group-addon">Venue</span>
+                                <input type="text" class="form-control" placeholder="Event Venue" name="venue" id="edit_event_venue">
                             </div>
                         </div>
                     </div><br>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="input-group">
-                                <span class="input-group-addon" id="event_time">Time</span>
-                                <input type="datetime" class="form-control" placeholder="Event Time">
+                                <span class="input-group-addon">Time</span>
+                                <input type="datetime" class="form-control" placeholder="Event Time" id="edit_event_time">
                             </div>
                         </div>
                     </div><br>
@@ -199,9 +208,15 @@
             url: '/events/get_event_detail/'+event_id,
             dataTyps: 'json',
             success: function(data){
-                event_id = data.event_id;
-                // alert('Success '+event_id);
                 $("#preloader").hide();
+                $("#edit_event_id").val(data.event_id);
+                $("#edit_event_title").val(data.event_name);
+                $("#edit_event_description").val(data.event_description);
+                $("#edit_event_detail").val(data.event_detail);
+                $("#edit_event_venue").val(data.event_venue);
+                $("#edit_event_time").val(data.event_time);
+                $("#edit_event_meta").val(data.event_pic);
+                $("#edit_event_form").attr('action',"/events/"+data.event_id);
                 $("#edit_event_modal").modal('show');
             },
             error: function(){

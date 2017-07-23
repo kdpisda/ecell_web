@@ -22,7 +22,7 @@
                             <img src="/uploads/events/{{ $event->meta }}" alt="E-Summit" class="img-rounded" height="150px" >
                         @endif
                         <blockquote>
-                            <h1><a href="/events/{{ $event->event_id }}">{{ $event->description }}</a></h1>
+                            <h1><a href="/events/ES2k1700{{ $event->event_id }}">{{ $event->description }}</a></h1>
                         </blockquote>
                         <p> {{ $event->details }} </p>
                     </div>

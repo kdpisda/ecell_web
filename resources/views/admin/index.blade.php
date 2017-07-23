@@ -54,11 +54,11 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                            Blogs
+                            Sponsors
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <h1>0 Blogs</h1>
+                        <h1>{{ $sponsors }} Sponsors</h1>
                     </div>
                 </div>
             </div>
@@ -79,72 +79,5 @@
             </div>
         </div>
     </div> -->
-    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="add_event_modal">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <form role="form" enctype="multipart/form-data" method="POST" action="{{ route('events.store') }}">
-                {{ csrf_field() }}
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="gridSystemModalLabel">Add an event</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="input-group">
-                                <span class="input-group-addon" id="event_title">Title</span>
-                                <input type="text" class="form-control" placeholder="Event Title" name="title">
-                            </div>
-                        </div>
-                    </div><br>
-                    <div class="row">
-                      <div class="col-lg-12">
-                            <div class="input-group">
-                                <span class="input-group-addon" id="event_description">Description</span>
-                                <input type="text" class="form-control" placeholder="Event Description" name="description">
-                            </div>
-                        </div>
-                    </div><br>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="input-group">
-                                <span class="input-group-addon" id="event_detail">Detail</span>
-                                <textarea placeholder="Event Details" class="form-control" rows="5" name="details"></textarea>
-                            </div>
-                        </div>
-                    </div><br> 
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="input-group">
-                                <span class="input-group-addon" id="event_image">Image</span>
-                                <input type="file" class="form-control" placeholder="Event Image" name="meta">
-                            </div>
-                        </div>
-                    </div><br>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="input-group">
-                                <span class="input-group-addon" id="event_venue">Venue</span>
-                                <input type="text" class="form-control" placeholder="Event Venue" name="venue">
-                            </div>
-                        </div>
-                    </div><br>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="input-group">
-                                <span class="input-group-addon" id="event_time">Time</span>
-                                <input type="datetime" class="form-control" placeholder="Event Time">
-                            </div>
-                        </div>
-                    </div><br>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
-        </div>
-      </div>
-    </div>
 </div>
 @endsection

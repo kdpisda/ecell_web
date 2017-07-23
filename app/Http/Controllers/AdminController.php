@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 use Auth;
 use App\Event;
+use App\Sponsor;
+use App\Startup;
+use App\User;
+use App\Speaker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -27,7 +31,6 @@ class AdminController extends Controller
 	        	'events' => DB::table('events')->count(),
 	        	'sponsors' => DB::table('sponsors')->count(),
 	        	'startups' => DB::table('startups')->count(),
-	        	'admin_event' => route('admin_events'),
         	);
     		return view('admin.index',$data);
     	}
@@ -38,7 +41,26 @@ class AdminController extends Controller
 
     public function events (){
     	$data = Event::all();
-    	$admin_event = route('admin_events');
-        return view('admin.events.index', ['events' => $data,'admin_event'=>$admin_event]);
+        return view('admin.events.index', ['events' => $data]);
+    }
+
+    public function sponsors(){
+        $data = Sponsor::all();
+        return view('admin.sponsors.index', ['sponsors' => $data]);
+    }
+
+    public function startups(){
+        $data = Startup::all();
+        return view('admin.startups.index', ['startups' => $data]);
+    }
+
+    public function users(){
+        $data = User::all();
+        return view('admin.users.index', ['users' => $data]);
+    }
+
+    public function speakers(){
+        $data = Speaker::all();
+        return view('admin.speakers.index',['speakers' => $data]);
     }
 }

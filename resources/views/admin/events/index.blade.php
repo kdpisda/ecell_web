@@ -32,9 +32,25 @@
                                 </td>
                                 <td>{{ $event->title }}</td>
                                 <td>{{ $event->description }}</td>
-                                <td>{{ $event->status }}</td>                                
+                                <td>
+                                    <h4 id="event_{{ $event->event_id }}">
+                                    @if ($event->status === 'unapproved')
+                                        <span class="label label-danger">Unapproved</span>
+                                    @else
+                                        <span class="label label-success">Approved</span>
+                                    @endif
+                                    </h4>
+                                    <br>
+                                    <button type="button" class="btn btn-default" onclick="approve_event({{ $event->event_id }})">
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-default" onclick="unapprove_event({{ $event->event_id }})">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </button>
+                                </td>
+                                <!-- <td>{{ $event->status }}</td>                                 -->
                                 <td>{{ $event->created_at }}</td>
-                                <td>{{ $event->mdified_at }}</td>
+                                <td>{{ $event->updated_at }}</td>
                                 <td><button type="button" class="btn btn-default" onclick="edit_event({{ $event->event_id }})"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>
                                 <td><button type="button" class="btn btn-default" onclick="delete_event({{ $event->event_id }})"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
                             </tr>
@@ -59,76 +75,14 @@
             </div>
         </div>
     </div> -->
-    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="add_event_modal">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="gridSystemModalLabel">Add an event</h4>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="input-group">
-                        <span class="input-group-addon" id="event_title">Title</span>
-                        <input type="text" class="form-control" placeholder="Event Title">
-                    </div>
-                </div>
-            </div><br>
-            <div class="row">
-              <div class="col-lg-12">
-                    <div class="input-group">
-                        <span class="input-group-addon" id="event_description">Description</span>
-                        <input type="text" class="form-control" placeholder="Event Description">
-                    </div>
-                </div>
-            </div><br>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="input-group">
-                        <span class="input-group-addon" id="event_detail">Detail</span>
-                        <textarea placeholder="Event Details"></textarea>
-                    </div>
-                </div>
-            </div><br> 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="input-group">
-                        <span class="input-group-addon" id="event_image">Image</span>
-                        <input type="file" class="form-control" placeholder="Event Image">
-                    </div>
-                </div>
-            </div><br>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="input-group">
-                        <span class="input-group-addon" id="event_venue">Venue</span>
-                        <input type="text" class="form-control" placeholder="Event Venue">
-                    </div>
-                </div>
-            </div><br>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="input-group">
-                        <span class="input-group-addon" id="event_time">Time</span>
-                        <input type="datetime" class="form-control" placeholder="Event Time">
-                    </div>
-                </div>
-            </div><br>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
 </div>
 <div class="modal fade" tabindex="-1" role="dialog" id="edit_event_modal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form role="form" enctype="multipart/form-data" method="POST" action="{{ route('events.store') }}">
+            <form role="form" enctype="multipart/form-data" method="POST" action="/events/update_event" id="edit_event_form">
                 {{ csrf_field() }}
+                {{ method_field('PUT') }}
+                <input type="hidden" name="event_id">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="gridSystemModalLabel">Edit event</h4>
@@ -137,48 +91,48 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="input-group">
-                                <span class="input-group-addon" id="event_title">Title</span>
-                                <input type="text" class="form-control" placeholder="Event Title" name="title">
+                                <span class="input-group-addon">Title</span>
+                                <input type="text" class="form-control" placeholder="Event Title" name="title" id="edit_event_title">
                             </div>
                         </div>
                     </div><br>
                     <div class="row">
                       <div class="col-lg-12">
                             <div class="input-group">
-                                <span class="input-group-addon" id="event_description">Description</span>
-                                <input type="text" class="form-control" placeholder="Event Description" name="description">
+                                <span class="input-group-addon">Description</span>
+                                <input type="text" class="form-control" placeholder="Event Description" name="description" id="edit_event_description">
                             </div>
                         </div>
                     </div><br>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="input-group">
-                                <span class="input-group-addon" id="event_detail">Detail</span>
-                                <textarea placeholder="Event Details" class="form-control" rows="5" name="details"></textarea>
+                                <span class="input-group-addon">Detail</span>
+                                <textarea placeholder="Event Details" class="form-control" rows="5" name="details" id="edit_event_detail"></textarea>
                             </div>
                         </div>
                     </div><br> 
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="input-group">
-                                <span class="input-group-addon" id="event_image">Image</span>
-                                <input type="file" class="form-control" placeholder="Event Image" name="meta">
+                                <span class="input-group-addon">Image</span>
+                                <input type="file" class="form-control" placeholder="Event Image" name="meta" id="edit_event_image">
                             </div>
                         </div>
                     </div><br>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="input-group">
-                                <span class="input-group-addon" id="event_venue">Venue</span>
-                                <input type="text" class="form-control" placeholder="Event Venue" name="venue">
+                                <span class="input-group-addon">Venue</span>
+                                <input type="text" class="form-control" placeholder="Event Venue" name="venue" id="edit_event_venue">
                             </div>
                         </div>
                     </div><br>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="input-group">
-                                <span class="input-group-addon" id="event_time">Time</span>
-                                <input type="datetime" class="form-control" placeholder="Event Time">
+                                <span class="input-group-addon">Time</span>
+                                <input type="datetime" class="form-control" placeholder="Event Time" id="edit_event_time">
                             </div>
                         </div>
                     </div><br>
@@ -199,19 +153,69 @@
             url: '/events/get_event_detail/'+event_id,
             dataTyps: 'json',
             success: function(data){
-                event_id = data.event_id;
-                // alert('Success '+event_id);
                 $("#preloader").hide();
+                $("#edit_event_id").val(data.event_id);
+                $("#edit_event_title").val(data.event_name);
+                $("#edit_event_description").val(data.event_description);
+                $("#edit_event_detail").val(data.event_detail);
+                $("#edit_event_venue").val(data.event_venue);
+                $("#edit_event_time").val(data.event_time);
+                $("#edit_event_meta").val(data.event_pic);
+                $("#edit_event_form").attr('action',"/events/"+data.event_id);
                 $("#edit_event_modal").modal('show');
             },
             error: function(){
                 alert("Seems like you are not connected to the internet");
                 $("#preloader").hide();
             }
-        });
+        });_event
     }
     function delete_event(event_id){
         alert(event_id);
+    }
+    function approve_event(event_id){
+        $("#preloader").show();
+        $.ajax({
+            url: '/events/approve_event/'+event_id,
+            dataType: 'json',
+            success: function(data){
+                if(data.flag == true){
+                    $("#message_call").text(data.message);
+                    $("#event_"+event_id).html("<span class=\"label label-success\">Approved</span>");
+                }else{
+                    $("#message_call").text(data.message);
+                }
+                $("#preloader").hide();
+                $("#message_modal").modal('show');
+            },
+            error: function(data){
+                $("#message_call").text(data.message);
+                $("#preloader").hide();
+                $("#message_modal").modal('show');
+            }
+        });
+    }
+    function unapprove_event(event_id){
+        $("#preloader").show();
+        $.ajax({
+            url: '/events/unapprove_event/'+event_id,
+            dataType: 'json',
+            success: function(data){
+                if(data.flag == true){
+                    $("#message_call").text(data.message);
+                    $("#event_"+event_id).html("<span class=\"label label-danger\">Unapproved</span>");
+                }else{
+                    $("#message_call").text(data.message);
+                }
+                $("#preloader").hide();
+                $("#message_modal").modal('show');
+            },
+            error: function(data){
+                $("#message_call").text(data.message);
+                $("#preloader").hide();
+                $("#message_modal").modal('show');
+            }
+        });
     }
 </script>
 @endsection
