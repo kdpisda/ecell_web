@@ -21,6 +21,7 @@
     <link href="css/responsive.css" rel="stylesheet">
     <!--Font awesome -->
     <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
 <body>
     <div class="preloader">
@@ -63,8 +64,7 @@
                           </li>
                     <li ><a href="blacktheme pages/blog.html">Blogs<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-dashboard"></span></a></li>
                     @if (Auth::guest())
-                    <li ><a href="#">Register<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-pencil"></span></a></li>
-                    <li ><a href="#">Login<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-lock"></span></a></li>
+                    <li ><a class="btn login"  role="button" data-target="#login-modal" data-toggle="modal">Login/Sign-Up<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon glyphicon-log-in"></span></a></li>
                     @else
                     <li ><a href="#">Dashboard<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-large"></span></a></li>
                     <li ><a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-play"></span></a></li>
@@ -82,6 +82,68 @@
     <div class="main">
         @section('content')
         @show
+    </div>
+    <!--Modal Login/Signup-->
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" align="center">   
+                <img src="img/login.png">
+                </div>
+                <div id="div-forms">
+                    <form id="login-form">
+                        <div class="modal-body">
+                            <input id="login_username" class="form-control" type="text" placeholder="Username" required>
+                            <input id="login_password" class="form-control" type="password" placeholder="Password" required>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Remember me
+                                </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div>
+                                <button type="submit" class="btn btn-success btn-lg btn-block">Login</button>
+                            </div>
+                            <div>
+                                <button id="login_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
+                                <button id="login_register_btn" type="button" class="btn btn-link">Register</button>
+                            </div>
+                        </div>
+                    </form>
+                    <form id="lost-form" style="display:none;">
+                        <div class="modal-body">
+                            <input id="lost_email" class="form-control" type="text" placeholder="E-Mail" required>
+                        </div>
+                        <div class="modal-footer">
+                            <div>
+                                <button type="submit" class="btn btn-success btn-lg btn-block">Send</button>
+                            </div>
+                            <div>
+                                <button id="lost_login_btn" type="button" class="btn btn-link">Log In</button>
+                                <button id="lost_register_btn" type="button" class="btn btn-link">Register</button>
+                            </div>
+                        </div>
+                    </form>
+                    <form id="register-form" style="display:none;">
+                        <div class="modal-body">
+                            <input id="register_username" class="form-control" type="text" placeholder="Username" required>
+                            <input id="register_email" class="form-control" type="text" placeholder="E-Mail" required>
+                            <input id="register_password" class="form-control" type="password" placeholder="Password" required>
+                        </div>
+                        <div class="modal-footer">
+                            <div>
+                                <button type="submit" class="btn btn-success btn-lg btn-block">Register</button>
+                            </div>
+                            <div>
+                                <button id="register_login_btn" type="button" class="btn btn-link">Log In</button>
+                                <button id="register_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
