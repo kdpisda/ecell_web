@@ -2,6 +2,7 @@
 @section('title', 'Admin Panel')
 
 @section('content')
+@parent
 <div class="container">
     <center>
         <div class="row">

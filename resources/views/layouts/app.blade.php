@@ -22,6 +22,7 @@
     <!--Font awesome -->
     <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/login.css">
+    <script src="js/login.js"></script>
 </head>
 <body>
     <div class="preloader">
@@ -91,10 +92,11 @@
                 <img src="img/login.png">
                 </div>
                 <div id="div-forms">
-                    <form id="login-form">
+                    <form id="login-form" method="POST" action="{{ route('login') }}">
+                    {{ csrf_field() }}
                         <div class="modal-body">
-                            <input id="login_username" class="form-control" type="text" placeholder="Username" required>
-                            <input id="login_password" class="form-control" type="password" placeholder="Password" required>
+                            <input id="login_username" class="form-control" type="text" placeholder="Username" required name="email">
+                            <input id="login_password" class="form-control" type="password" placeholder="Password" required name="password">
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox"> Remember me

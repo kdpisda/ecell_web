@@ -24,7 +24,7 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $speakers = Speaker::all();
+        $speakers = Speaker::where("status","approved");
         return view('welcome',['speakers' => $speakers]);
     }
 

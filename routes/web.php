@@ -21,6 +21,8 @@ Route::resource('events', 'EventsController');
 
 Route::resource('speakers','SpeakersController');
 
+Route::get('/admin_beta','AdminBetaController@index');
+
 // Route::resource('login', 'LoginController');
 
 Route::resource('signup', 'SignupController');
