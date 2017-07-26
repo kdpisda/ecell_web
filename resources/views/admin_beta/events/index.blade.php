@@ -1,81 +1,116 @@
-@extends('layouts.admin_panel')
-@section('title', 'Admin Panel Events')
+@extends('layouts.admin_panel_beta')
+@section('title', 'Admin Panel')
 
 @section('content')
 @parent
-<div class="container">
-    <center>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
-                <center>
-                    <table class="table table-hover">
-                        <tr>
-                            <th>#</th>
-                            <th></th>
-                            <th>Event Name</th>
-                            <th>Event Description</th>
-                            <th>Status</th>
-                            <th>Created At</th>
-                            <th>Modified At</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                        </tr>
-                        @foreach ($events as $event)
-                            <tr align="center">
-                                <td>{{ $event->event_id }}</td>
-                                <td>
-                                    @if($event->meta == '')
-                                        <img src="/images/esummit_black.png" alt="E-Summit" class="img-rounded" width="75px">
-                                    @else
-                                        <img src="/uploads/events/{{ $event->meta }}" alt="E-Summit" class="img-rounded" height="75px" >
-                                    @endif
-                                </td>
-                                <td>{{ $event->title }}</td>
-                                <td>{{ $event->description }}</td>
-                                <td>
-                                    <h4 id="event_{{ $event->event_id }}">
-                                    @if ($event->status === 'unapproved')
-                                        <span class="label label-danger">Unapproved</span>
-                                    @else
-                                        <span class="label label-success">Approved</span>
-                                    @endif
-                                    </h4>
-                                    <br>
-                                    <button type="button" class="btn btn-default" onclick="approve_event({{ $event->event_id }})">
-                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                                    </button>
-                                    <button type="button" class="btn btn-default" onclick="unapprove_event({{ $event->event_id }})">
-                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                    </button>
-                                </td>
-                                <!-- <td>{{ $event->status }}</td>                                 -->
-                                <td>{{ $event->created_at }}</td>
-                                <td>{{ $event->updated_at }}</td>
-                                <td><button type="button" class="btn btn-default" onclick="edit_event({{ $event->event_id }})"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>
-                                <td><button type="button" class="btn btn-default" onclick="delete_event({{ $event->event_id }})"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
-                            </tr>
-                        @endforeach
-                    </table>
-                </center>
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Events
+        <small>Entrepreneurship Summit 2k17</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Events</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <!-- Main row -->
+      <div class="row">
+        <!-- Left col -->
+        <section class="col-lg-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Events Detail</h3>
             </div>
-        </div>
-    </center>
-    <!-- <div id="add_event_modal" uk-modal="center: true">
-        <div class="uk-modal-dialog">
-            <button class="uk-modal-close-default uk-close" type="button" ></button>
-            <div class="uk-modal-header">
-                <h2 class="uk-modal-title">Modal Title</h2>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Event Pic</th>
+                  <th>Event Name</th>
+                  <th>Event Description</th>
+                  <th>Status</th>
+                  <th>Venue</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Modified At</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach ($events as $event)
+                    <tr align="center">
+                        <td>{{ $event->event_id }}</td>
+                        <td>
+                            @if($event->meta == '')
+                                <img src="/images/esummit_black.png" alt="E-Summit" class="img-rounded" width="75px">
+                            @else
+                                <img src="/uploads/events/{{ $event->meta }}" alt="E-Summit" class="img-rounded" height="75px" >
+                            @endif
+                        </td>
+                        <td>{{ $event->title }}</td>
+                        <td>{{ $event->description }}</td>
+                        <td>
+                            <h4 id="event_{{ $event->event_id }}">
+                            @if ($event->status === 'unapproved')
+                                <span class="label label-danger">Unapproved</span>
+                            @else
+                                <span class="label label-success">Approved</span>
+                            @endif
+                            </h4>
+                            <br>
+                            <button type="button" class="btn btn-default" onclick="approve_event({{ $event->event_id }})">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="btn btn-default" onclick="unapprove_event({{ $event->event_id }})">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </button>
+                        </td>
+                        <td>{{ $event->venue }}</td>
+                        <td>{{ $event->date }}</td>
+                        <td>{{ $event->time }}</td>
+                        <td>{{ $event->updated_at }}</td>
+                        <td><button type="button" class="btn btn-default" onclick="edit_event({{ $event->event_id }})"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>
+                        <td><button type="button" class="btn btn-default" onclick="delete_event({{ $event->event_id }})"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
+                    </tr>
+                @endforeach
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>#</th>
+                  <th>Event Pic</th>
+                  <th>Event Name</th>
+                  <th>Event Description</th>
+                  <th>Status</th>
+                  <th>Venue</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Modified At</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+                </tfoot>
+              </table>
             </div>
-            <div class="uk-modal-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
-            <div class="uk-modal-footer uk-text-right">
-                <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-                <button class="uk-button uk-button-primary" type="button">Save</button>
-            </div>
-        </div>
-    </div> -->
-</div>
+            <!-- /.box-body -->
+          </div>
+          
+
+        </section>
+      </div>
+      <!-- /.row (main row) -->
+
+    </section>
+    <!-- /.content -->
+  </div>
 <div class="modal fade" tabindex="-1" role="dialog" id="edit_event_modal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -146,6 +181,7 @@
       </div>
 </div><!-- /.modal -->
 <script type="text/javascript">
+    $("#events_navbar").addClass("active");
     function edit_event(event_id){
         $("#preloader").show();
         var event_id, event_name, event_detail, event_description, event_pic;    

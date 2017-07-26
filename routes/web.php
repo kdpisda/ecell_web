@@ -31,7 +31,6 @@ Route::get('/profile','HomeController@my_profile')->name('my_pofile');
 Route::get('/events/ES2k1700{id}','EventsController@show');
 Route::get('/events/get_event_detail/{id}','EventsController@get_event_detail');
 Route::get('/events/update_event', 'EventsController@update')->name('update_event');
-<<<<<<< HEAD
 Route::get('/events/approve_event/{id}','EventsController@approve_event');
 Route::get('/events/unapprove_event/{id}','EventsController@unapprove_event');
 
@@ -52,8 +51,6 @@ Route::get('/speakers/get_speaker_detail/{id}','SpeakersController@get_speaker_d
 Route::get('/speakers/update_speaker', 'SpeakersController@update')->name('update_speaker');
 Route::get('/speakers/approve_speaker/{id}','SpeakersController@approve_speaker');
 Route::get('/speakers/unapprove_speaker/{id}','SpeakersController@unapprove_speaker');
-=======
->>>>>>> 29cf5ade40b3b495e8de7105e037ff449ad27398
 
 //Route::middleware('auth_panel')->group(function () {
 
@@ -79,8 +76,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin','AdminController@index')->name('admin');
+
 Route::get('/admin/events','AdminController@events')->name('admin_events');
 Route::get('/admin/sponsors','AdminController@sponsors')->name('admin_sponsors');
 Route::get('/admin/startups','AdminController@startups')->name('admin_startups');
 Route::get('/admin/users','AdminController@users')->name('admin_users');
 Route::get('/admin/speakers','AdminController@speakers')->name('admin_speakers');
+
+Route::get('/admin_beta/events','AdminBetaController@events')->name('admin_beta_events');
+Route::get('/admin_beta/sponsors','AdminBetaController@sponsors')->name('admin_beta_sponsors');
+Route::get('/admin_beta/startups','AdminBetaController@startups')->name('admin_beta_startups');
+Route::get('/admin_beta/users','AdminBetaController@users')->name('admin_beta_users');
+Route::get('/admin_beta/speakers','AdminBetaController@speakers')->name('admin_beta_speakers');
