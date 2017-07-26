@@ -9194,6 +9194,7 @@ Stack trace:
 #46 /home/kdpisda/Projects/ecell_final/public/index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #47 /home/kdpisda/Projects/ecell_final/server.php(21): require_once('/home/kdpisda/P...')
 #48 {main}  
+<<<<<<< HEAD
 [2017-07-21 14:54:22] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Call to a member function getClientOriginalExtension() on null in /var/www/ecell_beta/app/Http/Controllers/EventsController.php:117
 Stack trace:
 #0 [internal function]: App\Http\Controllers\EventsController->update(Object(Illuminate\Http\Request), '1')
@@ -18927,3 +18928,5 @@ Stack trace:
 #49 /home/kuldeep/ecell/public/index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #50 /home/kuldeep/ecell/server.php(21): require_once('/home/kuldeep/e...')
 #51 {main}  
+=======
+>>>>>>> 29cf5ade40b3b495e8de7105e037ff449ad27398

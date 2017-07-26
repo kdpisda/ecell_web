@@ -33,6 +33,7 @@
                                 <td>{{ $event->title }}</td>
                                 <td>{{ $event->description }}</td>
                                 <td>
+<<<<<<< HEAD
                                     <h4 id="event_{{ $event->event_id }}">
                                     @if ($event->status === 'unapproved')
                                         <span class="label label-danger">Unapproved</span>
@@ -47,6 +48,12 @@
                                     <button type="button" class="btn btn-default" onclick="unapprove_event({{ $event->event_id }})">
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     </button>
+=======
+                                    <select class="form-control" id="event_status">
+                                        <option value="1">Approve</option>
+                                        <option value="0">Unapprove</option>
+                                    </select>
+>>>>>>> 29cf5ade40b3b495e8de7105e037ff449ad27398
                                 </td>
                                 <!-- <td>{{ $event->status }}</td>                                 -->
                                 <td>{{ $event->created_at }}</td>
@@ -75,11 +82,82 @@
             </div>
         </div>
     </div> -->
+<<<<<<< HEAD
+=======
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="add_event_modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="gridSystemModalLabel">Add an event</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">Title</span>
+                        <input type="text" class="form-control" placeholder="Event Title" id="event_title">
+                    </div>
+                </div>
+            </div><br>
+            <div class="row">
+              <div class="col-lg-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="event_description">Description</span>
+                        <input type="text" class="form-control" placeholder="Event Description">
+                    </div>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="event_detail">Detail</span>
+                        <textarea placeholder="Event Details"></textarea>
+                    </div>
+                </div>
+            </div><br> 
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="event_image">Image</span>
+                        <input type="file" class="form-control" placeholder="Event Image">
+                    </div>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="event_venue">Venue</span>
+                        <input type="text" class="form-control" placeholder="Event Venue">
+                    </div>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="event_time">Time</span>
+                        <input type="datetime" class="form-control" placeholder="Event Time">
+                    </div>
+                </div>
+            </div><br>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+>>>>>>> 29cf5ade40b3b495e8de7105e037ff449ad27398
 </div>
 <div class="modal fade" tabindex="-1" role="dialog" id="edit_event_modal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
+<<<<<<< HEAD
             <form role="form" enctype="multipart/form-data" method="POST" action="/events/update_event" id="edit_event_form">
+=======
+            <form role="form" enctype="multipart/form-data" method="POST" action="#" id="edit_event_form">
+>>>>>>> 29cf5ade40b3b495e8de7105e037ff449ad27398
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
                 <input type="hidden" name="event_id">

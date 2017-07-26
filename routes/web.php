@@ -31,6 +31,7 @@ Route::get('/profile','HomeController@my_profile')->name('my_pofile');
 Route::get('/events/ES2k1700{id}','EventsController@show');
 Route::get('/events/get_event_detail/{id}','EventsController@get_event_detail');
 Route::get('/events/update_event', 'EventsController@update')->name('update_event');
+<<<<<<< HEAD
 Route::get('/events/approve_event/{id}','EventsController@approve_event');
 Route::get('/events/unapprove_event/{id}','EventsController@unapprove_event');
 
@@ -51,6 +52,8 @@ Route::get('/speakers/get_speaker_detail/{id}','SpeakersController@get_speaker_d
 Route::get('/speakers/update_speaker', 'SpeakersController@update')->name('update_speaker');
 Route::get('/speakers/approve_speaker/{id}','SpeakersController@approve_speaker');
 Route::get('/speakers/unapprove_speaker/{id}','SpeakersController@unapprove_speaker');
+=======
+>>>>>>> 29cf5ade40b3b495e8de7105e037ff449ad27398
 
 //Route::middleware('auth_panel')->group(function () {
 
@@ -65,6 +68,8 @@ Route::get('/home', 'HomeController@aindex')->name('home');
 // Route::get('/executive_panel', 'HomeController@executive_panel')->name('executive_panel');
 
 // Route::get('/ambassador_panel', 'HomeController@ambassador_panel')->name('ambassador_panel');
+
+Route::get('/wp_testing','WptestingController@index')->name('wp-testing');
 
 Route::get('/wp_testing','WptestingController@index')->name('wp-testing');
 

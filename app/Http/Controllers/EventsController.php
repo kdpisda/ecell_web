@@ -96,6 +96,7 @@ class EventsController extends Controller
      */
     public function update(Request $request, $id)
     {   
+<<<<<<< HEAD
         $metaName = time().'.'.$request->meta->getClientOriginalExtension();
         Event::where('event_id', $id)
             ->update([
@@ -106,6 +107,33 @@ class EventsController extends Controller
                 'user_id' => Auth::id(),
                 'meta' => $metaName,
                 ]);
+=======
+        try {
+            if($request->meta != null){
+                $metaName = time().'.'.$request->meta->getClientOriginalExtension();
+            }
+            else $metaName = null;
+            Event::where('event_id', $id)
+                ->update([
+                    'title' => $request->title,
+                    'description' => $request->description,
+                    'details' => $request->details,
+                    'venue' => $request->venue,
+                    'user_id' => Auth::id(),
+                    'meta' => $metaName,
+                    ]);
+        } catch (Exception $e) {
+            Event::where('event_id', $id)
+                ->update([
+                    'title' => $request->title,
+                    'description' => $request->description,
+                    'details' => $request->details,
+                    'venue' => $request->venue,
+                    'user_id' => Auth::id(),                    
+                    ]);
+            var_dump($e);
+        }
+>>>>>>> 29cf5ade40b3b495e8de7105e037ff449ad27398
         // DB::table('events')
         //     ->where('event_id', $request->event_id)
         //     ->update([
@@ -114,7 +142,11 @@ class EventsController extends Controller
         $metaName = time().'.'.$request->meta->getClientOriginalExtension();
         $request->meta->move(public_path('uploads/events'), $metaName);
         // if($event->save()) {
+<<<<<<< HEAD
             return redirect('/admin/events');
+=======
+            var_dump('updated!');
+>>>>>>> 29cf5ade40b3b495e8de7105e037ff449ad27398
         // }
     }
 
