@@ -1,0 +1,106 @@
+body,html{
+    	height: 100%;
+	}
+	.main .row{
+		padding: 0px;
+		margin: 0px;
+	}
+	nav.sidebar.navbar {
+		border-radius: 0px;
+		z-index:100;
+		background-color:#bfe7fc;
+	}
+	.navbar-nav .open .dropdown-menu>li>a:hover {
+			color: #35acdf;;
+		}
+	nav.sidebar, .main{
+		-webkit-transition: margin 200ms ease-out;
+	    -moz-transition: margin 200ms ease-out;
+	    -o-transition: margin 200ms ease-out;
+	    transition: margin 200ms ease-out;
+	}
+	navbar .active{
+		background-color:#314190;
+		
+	}
+	.dropdown-toggle.active{
+		background-color:#1a1a1a;
+		
+	}
+	@media only screen and (max-width: 768px) {
+    .logo {
+        display: none;
+    }
+
+	}
+	@media (min-width: 768px) {
+		.main{
+			position: absolute;
+			width: calc(100% - 40px); 
+			margin-left: 40px;
+			float: right;
+		}
+
+		.navbar-brand{
+			margin-top:20px;
+			margin-bottom:20px;		
+		}
+		nav.sidebar:hover + .main{
+			margin-left: 200px;
+		}
+		nav.sidebar.navbar.sidebar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+			margin-left: 0px;
+		}
+
+		nav.sidebar .navbar-brand, nav.sidebar .navbar-header{
+			text-align: center;
+			width: 100%;
+			margin-left: 0px;
+		}
+		nav.sidebar a{
+			padding-right: 13px;
+		}
+		nav.sidebar .navbar-nav > li:first-child{
+			border-top: 1px black solid;
+		}
+		nav.sidebar .navbar-nav > li{
+			border-bottom: 1px black solid;
+		}
+		nav.sidebar .navbar-nav .open .dropdown-menu {
+			position: static;
+			float: none;
+			width: auto;
+			margin-top: 0;
+			background-color: transparent;
+			border: 0;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+		}
+		nav.sidebar .navbar-collapse, nav.sidebar .container-fluid{
+			padding: 0 0px 0 0px;
+		}
+		.navbar-nav .open .dropdown-menu>li>a {
+			color: black;
+		}
+		nav.sidebar{
+			width: 200px;
+			height: 100%;
+			margin-left: -160px;
+			float: left;
+			z-index: 8000;
+			margin-bottom: 0px;
+			position:fixed;
+		}
+		nav.sidebar li {
+			top: 50%;
+			width: 100%;
+			display:block;
+			
+		}
+		nav.sidebar:hover{
+			margin-left: 0px;
+		}
+		.forAnimate{
+			opacity: 0;
+		}
+	}

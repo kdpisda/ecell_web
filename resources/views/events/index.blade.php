@@ -6,63 +6,33 @@
 <div class="container">
     <center>
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
-                <img src="images/esummit_black.png" alt="E-Summit 17" class="img-rounded" height="400px">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-3 col-ls-3">
+        @foreach ($events as $event)
+            <div class="col-xs-12 col-sm-12 col-md-4 col-ls-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
-                            Events
+                            {{ $event->title }}
                         </h3>
                     </div>
                     <div class="panel-body">
-                        <h1> Events</h1>
+                        @if($event->meta == '')
+                            <img src="/images/esummit_black.png" alt="E-Summit" class="img-rounded" width="100px">
+                        @else
+                            <img src="/uploads/events/{{ $event->meta }}" alt="E-Summit" class="img-rounded" height="150px" >
+                        @endif
+                        <blockquote>
+                            <h1><a href="/events/ES2k1700{{ $event->event_id }}">{{ $event->description }}</a></h1>
+                        </blockquote>
+                        <p> {{ $event->details }} </p>
+                    </div>
+                    <div class="panel-footer">
+                        <span class="glyphicon glyphicon-map-marker" area-hidden="true"></span>
+                        {{ $event->venue }}
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-3 col-ls-3">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
-                            Start-ups
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-                        <h1>0 Start-ups</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-3 col-ls-3">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                            Users
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-                        <h1> Users</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-3 col-ls-3">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                            Blogs
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-                        <h1>0 Blogs</h1>
-                    </div>
-                </div>
-            </div>
+        @endforeach
         </div>
     </center>
     <!-- <div id="add_event_modal" uk-modal="center: true">
