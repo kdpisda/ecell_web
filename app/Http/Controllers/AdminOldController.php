@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+// namespace App\Http\Controllers;
 use Auth;
 use App\Event;
 use App\Sponsor;
@@ -10,7 +10,7 @@ use App\Speaker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class AdminBetaController extends Controller
+class AdminOldController extends Controller
 {
 
 	/*
@@ -18,9 +18,9 @@ class AdminBetaController extends Controller
 		thrown away from here.
 	*/
 
-	// public function __construct(){
-	// 	$this->middleware('auth');
-	// }
+	public function __construct(){
+		$this->middleware('auth');
+	}
 
 
     public function index(){
@@ -31,9 +31,8 @@ class AdminBetaController extends Controller
 	        	'events' => DB::table('events')->count(),
 	        	'sponsors' => DB::table('sponsors')->count(),
 	        	'startups' => DB::table('startups')->count(),
-                'speakers' => DB::table('speakers')->count(),
         	);
-    		return view('admin_beta.index',$data);
+    		return view('admin.index',$data);
     	}
     	else{
     		return redirect()->route('home');
@@ -42,26 +41,26 @@ class AdminBetaController extends Controller
 
     public function events (){
     	$data = Event::all();
-        return view('admin_beta.events.index', ['events' => $data]);
+        return view('admin.events.index', ['events' => $data]);
     }
 
     public function sponsors(){
         $data = Sponsor::all();
-        return view('admin_beta.sponsors.index', ['sponsors' => $data]);
+        return view('admin.sponsors.index', ['sponsors' => $data]);
     }
 
     public function startups(){
         $data = Startup::all();
-        return view('admin_beta.startups.index', ['startups' => $data]);
+        return view('admin.startups.index', ['startups' => $data]);
     }
 
     public function users(){
         $data = User::all();
-        return view('admin_beta.users.index', ['users' => $data]);
+        return view('admin.users.index', ['users' => $data]);
     }
 
     public function speakers(){
         $data = Speaker::all();
-        return view('admin_beta.speakers.index',['speakers' => $data]);
+        return view('admin.speakers.index',['speakers' => $data]);
     }
 }

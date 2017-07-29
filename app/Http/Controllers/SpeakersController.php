@@ -101,29 +101,33 @@ class SpeakersController extends Controller{
      */
     public function update(Request $request, $id)
     {
-        $metaName = time().'.'.$request->meta->getClientOriginalExtension();
-        Speaker::where('speaker_id', '=' ,$id)
-            ->update([
-                'name' => $request->name,
-                'description' => $request->description,
-                'owner' => $request->owner,
-                'contact_no' => $request->contact_no,
-                'contact_email' => $request->contact_email,
-                'address' => $request->address,
-                'user_id' => Auth::id(),
-                'meta' => $metaName,
-            ]);
-        // DB::table('speakers')
-        //     ->where('speaker_id', $request->speaker_id)
-        //     ->update([
-                
-        //     ]);
-        $metaName = time().'.'.$request->meta->getClientOriginalExtension();
-        $request->meta->move(public_path('uploads/speakers'), $metaName);
-        // if($speaker->save()) {
-            // return redirect('/admin/speakers');
-        var_dump($id);
-        // }
+        if($request->meta == null){
+            Speaker::where('speaker_id', '=' ,$id)
+                ->update([
+                    'name' => $request->name,
+                    'description' => $request->description,
+                    'owner' => $request->owner,
+                    'contact_no' => $request->contact_no,
+                    'contact_email' => $request->contact_email,
+                    'address' => $request->address,
+                    'user_id' => Auth::id(),
+                ]);
+        }else{
+            $metaName = time().'.'.$request->meta->getClientOriginalExtension();
+            Speaker::where('speaker_id', '=' ,$id)
+                ->update([
+                    'name' => $request->name,
+                    'description' => $request->description,
+                    'owner' => $request->owner,
+                    'contact_no' => $request->contact_no,
+                    'contact_email' => $request->contact_email,
+                    'address' => $request->address,
+                    'user_id' => Auth::id(),
+                    'meta' => $metaName,
+                ]);
+            $metaName = time().'.'.$request->meta->getClientOriginalExtension();
+            $request->meta->move(public_path('uploads/speakers'), $metaName);
+        }
     }
 
     /**
@@ -137,7 +141,7 @@ class SpeakersController extends Controller{
         //
     }
 
-    public function get_speaker_detail($id){
+    public function getSpeakerDetail($id){
         $speaker = DB::table('speakers')->where('speaker_id', '=', $id)->get();
         return response()->json([
             'speaker_id' => $speaker[0]->speaker_id,
@@ -150,7 +154,8 @@ class SpeakersController extends Controller{
             'speaker_address' => $speaker[0]->address
         ]);
     }
-    public function approve_speaker($id){
+    
+    public function approveSpeaker($id){
         $user = Auth::user();
         if($user->user_type == "ADMIN"){
             try{
@@ -176,7 +181,7 @@ class SpeakersController extends Controller{
         }
     }
 
-    public function unapprove_speaker($id){
+    public function unapproveSpeaker($id){
         $user = Auth::user();
         if($user->user_type == "ADMIN"){
             try{
@@ -200,5 +205,9 @@ class SpeakersController extends Controller{
                     'message' => 'You do not have sufficient privilage'
                 ]);   
         }
+    }
+
+    public function getSpeakersList(){
+        
     }
 }

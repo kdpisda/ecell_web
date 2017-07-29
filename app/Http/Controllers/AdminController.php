@@ -31,6 +31,7 @@ class AdminController extends Controller
 	        	'events' => DB::table('events')->count(),
 	        	'sponsors' => DB::table('sponsors')->count(),
 	        	'startups' => DB::table('startups')->count(),
+                'speakers' => DB::table('speakers')->count(),
         	);
     		return view('admin.index',$data);
     	}

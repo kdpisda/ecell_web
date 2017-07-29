@@ -61,9 +61,11 @@ class StartupsController extends Controller
      * @param  \App\Startups  $startups
      * @return \Illuminate\Http\Response
      */
-    public function show(Startup $startup)
+    public function show($id)
     {
-        $len = strlen($id);
+        // Slicing id from custom startup id
+        // STRTUP00 id default hence slicing
+        // and converting it to int the resultent ID 
         $startup_id = intval(substr($id, 7));        
         $startup = DB::table('startups')->where([
                 ['startup_id', '=', $startup_id ],
@@ -92,29 +94,33 @@ class StartupsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $metaName = time().'.'.$request->meta->getClientOriginalExtension();
-        Startup::where('startup_id', '=' ,$id)
-            ->update([
-                'name' => $request->name,
-                'description' => $request->description,
-                'owner' => $request->owner,
-                'contact_no' => $request->contact_no,
-                'contact_email' => $request->contact_email,
-                'address' => $request->address,
-                'user_id' => Auth::id(),
-                'meta' => $metaName,
-            ]);
-        // DB::table('startups')
-        //     ->where('startup_id', $request->startup_id)
-        //     ->update([
-                
-        //     ]);
-        $metaName = time().'.'.$request->meta->getClientOriginalExtension();
-        $request->meta->move(public_path('uploads/startups'), $metaName);
-        // if($startup->save()) {
-            // return redirect('/admin/startups');
-        var_dump($id);
-        // }
+        if($request->meta == ''){
+            Startup::where('startup_id', '=' ,$id)
+                ->update([
+                    'name' => $request->name,
+                    'description' => $request->description,
+                    'owner' => $request->owner,
+                    'contact_no' => $request->contact_no,
+                    'contact_email' => $request->contact_email,
+                    'address' => $request->address,
+                    'user_id' => Auth::id(),
+                ]);
+        }else{
+            $metaName = time().'.'.$request->meta->getClientOriginalExtension();
+            Startup::where('startup_id', '=' ,$id)
+                ->update([
+                    'name' => $request->name,
+                    'description' => $request->description,
+                    'owner' => $request->owner,
+                    'contact_no' => $request->contact_no,
+                    'contact_email' => $request->contact_email,
+                    'address' => $request->address,
+                    'user_id' => Auth::id(),
+                    'meta' => $metaName,
+                ]);
+            $request->meta->move(public_path('uploads/startups'), $metaName);
+        }
+        return redirect('/admin/startups');
     }
 
     /**
@@ -128,7 +134,7 @@ class StartupsController extends Controller
         //
     }
 
-    public function get_startup_detail($id){
+    public function getStartupDetail($id){
         $startup = DB::table('startups')->where('startup_id', '=', $id)->get();
         return response()->json([
             'startup_id' => $startup[0]->startup_id,
@@ -141,7 +147,7 @@ class StartupsController extends Controller
             'startup_address' => $startup[0]->address
         ]);
     }
-    public function approve_startup($id){
+    public function approveStartup($id){
         $user = Auth::user();
         if($user->user_type == "ADMIN"){
             try{
@@ -167,7 +173,7 @@ class StartupsController extends Controller
         }
     }
 
-    public function unapprove_startup($id){
+    public function unapproveStartup($id){
         $user = Auth::user();
         if($user->user_type == "ADMIN"){
             try{
@@ -191,5 +197,12 @@ class StartupsController extends Controller
                     'message' => 'You do not have sufficient privilage'
                 ]);   
         }
+    }
+
+    public function getStartupsList(){
+        $startups = DB::table('startups')->where(
+                'status','=','approved'
+            )->get();
+        return response($startups->toJson());
     }
 }

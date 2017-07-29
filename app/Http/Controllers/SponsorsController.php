@@ -103,8 +103,20 @@ class SponsorsController extends Controller{
      */
     public function update(Request $request, $id)
     {
-        $metaName = time().'.'.$request->meta->getClientOriginalExtension();
-        Sponsor::where('sponsor_id', '=' ,$id)
+        if($request->meta == null){
+            Sponsor::where('sponsor_id', '=' ,$id)
+                ->update([
+                    'name' => $request->name,
+                    'description' => $request->description,
+                    'owner' => $request->owner,
+                    'contact_no' => $request->contact_no,
+                    'contact_email' => $request->contact_email,
+                    'address' => $request->address,
+                    'user_id' => Auth::id(),
+                ]);
+        }else{
+            $metaName = time().'.'.$request->meta->getClientOriginalExtension();
+            Sponsor::where('sponsor_id', '=' ,$id)
             ->update([
                 'name' => $request->name,
                 'description' => $request->description,
@@ -115,17 +127,9 @@ class SponsorsController extends Controller{
                 'user_id' => Auth::id(),
                 'meta' => $metaName,
             ]);
-        // DB::table('sponsors')
-        //     ->where('sponsor_id', $request->sponsor_id)
-        //     ->update([
-                
-        //     ]);
-        $metaName = time().'.'.$request->meta->getClientOriginalExtension();
-        $request->meta->move(public_path('uploads/sponsors'), $metaName);
-        // if($sponsor->save()) {
-            // return redirect('/admin/sponsors');
-        var_dump($id);
-        // }
+            $request->meta->move(public_path('uploads/sponsors'), $metaName);
+        }
+        return redirect('/admin/sponsors');
     }
 
     /**
@@ -139,7 +143,7 @@ class SponsorsController extends Controller{
         //
     }
 
-    public function get_sponsor_detail($id){
+    public function getSponsorDetail($id){
         $sponsor = DB::table('sponsors')->where('sponsor_id', '=', $id)->get();
         return response()->json([
             'sponsor_id' => $sponsor[0]->sponsor_id,
@@ -152,7 +156,8 @@ class SponsorsController extends Controller{
             'sponsor_address' => $sponsor[0]->address
         ]);
     }
-    public function approve_sponsor($id){
+    
+    public function approveSponsor($id){
         $user = Auth::user();
         if($user->user_type == "ADMIN"){
             try{
@@ -178,7 +183,7 @@ class SponsorsController extends Controller{
         }
     }
 
-    public function unapprove_sponsor($id){
+    public function unapproveSponsor($id){
         $user = Auth::user();
         if($user->user_type == "ADMIN"){
             try{
@@ -202,5 +207,12 @@ class SponsorsController extends Controller{
                     'message' => 'You do not have sufficient privilage'
                 ]);   
         }
+    }
+
+    public function getSponsorsList(){
+        $sponsors = DB::table('sponsors')->where(
+                'status','=','approved'
+            )->get();
+        return response($sponsors->toJson());
     }
 }

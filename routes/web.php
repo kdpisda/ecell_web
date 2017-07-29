@@ -13,15 +13,7 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::resource('startups', 'StartupsController');
-
-Route::resource('sponsors', 'SponsorsController');
-
-Route::resource('events', 'EventsController');
-
-Route::resource('speakers','SpeakersController');
-
-Route::get('/admin_beta','AdminBetaController@index');
+Route::get('/admin','AdminController@index');
 
 // Route::resource('login', 'LoginController');
 
@@ -29,28 +21,31 @@ Route::resource('signup', 'SignupController');
 Route::get('/profile','HomeController@my_profile')->name('my_pofile');
 
 Route::get('/events/ES2k1700{id}','EventsController@show');
-Route::get('/events/get_event_detail/{id}','EventsController@get_event_detail');
-Route::get('/events/update_event', 'EventsController@update')->name('update_event');
-Route::get('/events/approve_event/{id}','EventsController@approve_event');
-Route::get('/events/unapprove_event/{id}','EventsController@unapprove_event');
+Route::get('/events/get_event_detail/{id}','EventsController@getEventDetail');
+Route::post('/events/update_event', 'EventsController@update')->name('update_event');
+Route::get('/events/approve_event/{id}','EventsController@approveEvent');
+Route::get('/events/unapprove_event/{id}','EventsController@unapproveEvent');
+Route::get('/events/get_events_list','EventsController@getEventsList');
 
 Route::get('/sponsors/SPONS00{id}','SponsorsController@show');
-Route::get('/sponsors/get_sponsor_detail/{id}','SponsorsController@get_sponsor_detail');
-Route::get('/sponsors/update_sponsor', 'SponsorsController@update')->name('update_sponsor');
-Route::get('/sponsors/approve_sponsor/{id}','SponsorsController@approve_sponsor');
-Route::get('/sponsors/unapprove_sponsor/{id}','SponsorsController@unapprove_sponsor');
+Route::get('/sponsors/get_sponsor_detail/{id}','SponsorsController@getSponsorDetail');
+Route::post('/sponsors/update_sponsor', 'SponsorsController@update')->name('update_sponsor');
+Route::get('/sponsors/approve_sponsor/{id}','SponsorsController@approveSponsor');
+Route::get('/sponsors/unapprove_sponsor/{id}','SponsorsController@unapproveSponsor');
+Route::get('/sponsors/get_sponsors_list','SponsorsController@getSponsorsList');
 
-Route::get('/startups/SPONS00{id}','StartupsController@show');
-Route::get('/startups/get_startup_detail/{id}','StartupsController@get_startup_detail');
-Route::get('/startups/update_startup', 'StartupsController@update')->name('update_startup');
-Route::get('/startups/approve_startup/{id}','StartupsController@approve_startup');
-Route::get('/startups/unapprove_startup/{id}','StartupsController@unapprove_startup');
+Route::get('/startups/STRTUP00{id}','StartupsController@show');
+Route::get('/startups/get_startup_detail/{id}','StartupsController@getStartupDetail');
+Route::post('/startups/update_startup', 'StartupsController@update')->name('updateStartup');
+Route::get('/startups/approve_startup/{id}','StartupsController@approveStartup');
+Route::get('/startups/unapprove_startup/{id}','StartupsController@unapproveStartup');
+Route::get('/startups/get_startups_list','StartupsController@getStartupsList');
 
-Route::get('/speakers/SPONS00{id}','SpeakersController@show');
-Route::get('/speakers/get_speaker_detail/{id}','SpeakersController@get_speaker_detail');
-Route::get('/speakers/update_speaker', 'SpeakersController@update')->name('update_speaker');
-Route::get('/speakers/approve_speaker/{id}','SpeakersController@approve_speaker');
-Route::get('/speakers/unapprove_speaker/{id}','SpeakersController@unapprove_speaker');
+Route::get('/speakers/SPKR00{id}','SpeakersController@show');
+Route::get('/speakers/get_speaker_detail/{id}','SpeakersController@getSpeakerDetail');
+Route::post('/speakers/update_speaker', 'SpeakersController@update')->name('updateSpeaker');
+Route::get('/speakers/approve_speaker/{id}','SpeakersController@approveSpeaker');
+Route::get('/speakers/unapprove_speaker/{id}','SpeakersController@unapproveSpeaker');
 
 //Route::middleware('auth_panel')->group(function () {
 
@@ -68,8 +63,6 @@ Route::get('/home', 'HomeController@aindex')->name('home');
 
 Route::get('/wp_testing','WptestingController@index')->name('wp-testing');
 
-Route::get('/wp_testing','WptestingController@index')->name('wp-testing');
-
 //});
 
 Auth::routes();
@@ -83,8 +76,12 @@ Route::get('/admin/startups','AdminController@startups')->name('admin_startups')
 Route::get('/admin/users','AdminController@users')->name('admin_users');
 Route::get('/admin/speakers','AdminController@speakers')->name('admin_speakers');
 
-Route::get('/admin_beta/events','AdminBetaController@events')->name('admin_beta_events');
-Route::get('/admin_beta/sponsors','AdminBetaController@sponsors')->name('admin_beta_sponsors');
-Route::get('/admin_beta/startups','AdminBetaController@startups')->name('admin_beta_startups');
-Route::get('/admin_beta/users','AdminBetaController@users')->name('admin_beta_users');
-Route::get('/admin_beta/speakers','AdminBetaController@speakers')->name('admin_beta_speakers');
+Route::resource('startups', 'StartupsController');
+
+Route::resource('sponsors', 'SponsorsController');
+
+Route::resource('events', 'EventsController');
+
+Route::resource('speakers','SpeakersController');
+
+Route::recource('question_set','QuestionSet');

@@ -10,7 +10,7 @@ class EventsController extends Controller
 {
     
     public function __construct(){
-        $this->middleware('auth', ['except' => ['index', 'show','get_event_detail']]);
+        $this->middleware('auth', ['except' => ['index', 'show','get_event_detail','get_events_list']]);
     }
 
     /**
@@ -18,8 +18,7 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         $data = DB::table('events')->where(
                 'status','=','approved'
             )->get();
@@ -31,8 +30,7 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(){
         //
     }
 
@@ -42,8 +40,7 @@ class EventsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $event = new Event;
         $event->title = $request->title;
         $event->description = $request->description;
@@ -67,8 +64,7 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {   
+    public function show($id){   
         $len = strlen($id);
         $event_id = intval(substr($id, 8));        
         $event = DB::table('events')->where([
@@ -96,28 +92,30 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {   
-        $metaName = time().'.'.$request->meta->getClientOriginalExtension();
-        Event::where('event_id', $id)
-            ->update([
-                'title' => $request->title,
-                'description' => $request->description,
-                'details' => $request->details,
-                'venue' => $request->venue,
-                'user_id' => Auth::id(),
-                'meta' => $metaName,
-                ]);
-        // DB::table('events')
-        //     ->where('event_id', $request->event_id)
-        //     ->update([
-                
-        //     ]);
-        $metaName = time().'.'.$request->meta->getClientOriginalExtension();
-        $request->meta->move(public_path('uploads/events'), $metaName);
-        // if($event->save()) {
-            return redirect('/admin/events');
-        // }
+    public function update(Request $request, $id){   
+        if($request->meta == null){
+            Event::where('event_id', $id)
+                ->update([
+                    'title' => $request->title,
+                    'description' => $request->description,
+                    'details' => $request->details,
+                    'venue' => $request->venue,
+                    'user_id' => Auth::id(),
+                    ]);
+        }else{
+            $metaName = time().'.'.$request->meta->getClientOriginalExtension();
+            $request->meta->move(public_path('uploads/events'), $metaName);
+            Event::where('event_id', $id)
+                ->update([
+                    'title' => $request->title,
+                    'description' => $request->description,
+                    'details' => $request->details,
+                    'venue' => $request->venue,
+                    'user_id' => Auth::id(),
+                    'meta' => $metaName,
+                    ]);
+        }
+        return redirect('/admin/events');
     }
 
     /**
@@ -126,12 +124,11 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         //
     }
 
-    public function get_event_detail($id){
+    public function getEventDetail($id){
         $event = DB::table('events')->where('event_id', '=', $id)->get();
         return response()->json([
             'event_id' => $event[0]->event_id,
@@ -145,7 +142,7 @@ class EventsController extends Controller
         ]);
     }
 
-    public function approve_event($id){
+    public function approveEvent($id){
         $user = Auth::user();
         if($user->user_type == "ADMIN"){
             try{
@@ -170,7 +167,7 @@ class EventsController extends Controller
                 ]);   
         }
     }
-    public function unapprove_event($id){
+    public function unapproveEvent($id){
         $user = Auth::user();
         if($user->user_type == "ADMIN"){
             try{
@@ -194,5 +191,12 @@ class EventsController extends Controller
                     'message' => 'You do not have sufficient privilage'
                 ]);   
         }
+    }
+
+    public function getEventsList(){
+        $events = DB::table('events')->where(
+                'status','=','approved'
+            )->get();
+        return response($events->toJson());
     }
 }
