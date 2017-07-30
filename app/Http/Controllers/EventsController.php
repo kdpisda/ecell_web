@@ -10,7 +10,7 @@ class EventsController extends Controller
 {
     
     public function __construct(){
-        $this->middleware('auth', ['except' => ['index', 'show','get_event_detail','get_events_list']]);
+        $this->middleware('auth', ['except' => ['index', 'show','getEventDetail','getEventsList']]);
     }
 
     /**

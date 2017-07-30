@@ -406,9 +406,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/admin/speakers"><i class="fa fa-circle-o"></i> All Question Sets</a></li>
-            <li><a href="#" data-toggle="modal" data-target="#add_question_set_modal"><i class="fa fa-plus-circle"></i> Add A Question Set</a></li>
-            <li><a href="/admin/speakers"><i class="fa fa-circle-o"></i> All Question</a></li>
+            <li><a href="/admin/questionSets"><i class="fa fa-circle-o"></i> All Question Sets</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#add_questionSet_modal"><i class="fa fa-plus-circle"></i> Add A Question Set</a></li>
+            <li><a href="/admin/questions"><i class="fa fa-circle-o"></i> All Question</a></li>
             <li><a href="#" data-toggle="modal" data-target="#add_question_modal"><i class="fa fa-plus-circle"></i> Add A Question</a></li>
           </ul>
         </li>
@@ -747,10 +747,10 @@
 <!-- End Add Sponsor Modal -->
 
 <!-- Add Question set modal -->
-<div class="modal modal-info fade" id="add_question_set_modal">
+<div class="modal modal-info fade" id="add_questionSet_modal">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form role="form" enctype="multipart/form-data" method="POST" action="{{ route('question_set.store') }}">
+      <form role="form" enctype="multipart/form-data" method="POST" action="{{ route('questionSets.store') }}">
         {{ csrf_field() }}
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -791,7 +791,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-outline">Save changes</button>
+          <button type="submit" class="btn btn-outline">Save changes</button>
         </div>
       </form>
     </div>

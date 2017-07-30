@@ -7,6 +7,7 @@ use App\Sponsor;
 use App\Startup;
 use App\User;
 use App\Speaker;
+use App\QuestionSet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -63,5 +64,10 @@ class AdminController extends Controller
     public function speakers(){
         $data = Speaker::all();
         return view('admin.speakers.index',['speakers' => $data]);
+    }
+
+    public function questionSets(){
+        $data = QuestionSet::all();
+        return view('admin.questionSets.index',['questionSets' => $data]);
     }
 }

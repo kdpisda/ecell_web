@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class StartupsController extends Controller
 {
+    
+    public function __construct(){
+        $this->middleware('auth', ['except' => ['index', 'show','getStartupDetail','getStartupsList']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
