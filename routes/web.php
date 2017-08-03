@@ -46,6 +46,17 @@ Route::get('/speakers/get_speaker_detail/{id}','SpeakersController@getSpeakerDet
 Route::post('/speakers/update_speaker', 'SpeakersController@update')->name('updateSpeaker');
 Route::get('/speakers/approve_speaker/{id}','SpeakersController@approveSpeaker');
 Route::get('/speakers/unapprove_speaker/{id}','SpeakersController@unapproveSpeaker');
+Route::get('/speakers/get_speakers_list','SpeakersController@getSpeakersList');
+
+Route::get('/questionSets/approve_question_set/{id}','QuestionSetsController@approveQuestionSet');
+Route::get('/questionSets/unapprove_question_set/{id}','QuestionSetsController@unapproveQuestionSet');
+Route::get('/questionSets/get_question_set_detail/{id}','QuestionSetsController@getQuestionSetDetail');
+Route::get('/questionSets/get_question_sets_list','QuestionSetsController@getQuestionSetsList');
+
+Route::get('/questions/get_question_detail/{id}','QuestionsController@getQuestionsDetail');
+Route::get('/questions/get_questions_list','QuestionsController@getQuestionsList');
+Route::get('/questions/unapprove_question/{id}','QuestionsController@unapproveQuestion');
+Route::get('/questions/approve_question/{id}','QuestionsController@approveQuestion');
 
 //Route::middleware('auth_panel')->group(function () {
 
@@ -75,6 +86,8 @@ Route::get('/admin/sponsors','AdminController@sponsors')->name('admin_sponsors')
 Route::get('/admin/startups','AdminController@startups')->name('admin_startups');
 Route::get('/admin/users','AdminController@users')->name('admin_users');
 Route::get('/admin/speakers','AdminController@speakers')->name('admin_speakers');
+Route::get('/admin/questionSets','AdminController@questionSets')->name('admin_question_sets');
+Route::get('/admin/questions','AdminController@questions')->name('admin_questions');
 
 Route::resource('startups', 'StartupsController');
 
@@ -84,4 +97,6 @@ Route::resource('events', 'EventsController');
 
 Route::resource('speakers','SpeakersController');
 
-Route::recource('question_set','QuestionSet');
+Route::resource('questionSets','QuestionSetsController');
+
+Route::resource('questions','QuestionsController');

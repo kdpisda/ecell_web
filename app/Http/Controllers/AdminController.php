@@ -7,6 +7,8 @@ use App\Sponsor;
 use App\Startup;
 use App\User;
 use App\Speaker;
+use App\QuestionSet;
+use App\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,13 +20,14 @@ class AdminController extends Controller
 		thrown away from here.
 	*/
 
+
 	public function __construct(){
 		$this->middleware('auth');
 	}
 
 
     public function index(){
-    	$user = Auth::user();
+        $user = Auth::user();
     	if($user->user_type == "ADMIN"){
     		$data = array(
 	    		'users' => DB::table('users')->count(),
@@ -32,6 +35,7 @@ class AdminController extends Controller
 	        	'sponsors' => DB::table('sponsors')->count(),
 	        	'startups' => DB::table('startups')->count(),
                 'speakers' => DB::table('speakers')->count(),
+                'questionSets' => QuestionSet::all(),
         	);
     		return view('admin.index',$data);
     	}
@@ -41,27 +45,73 @@ class AdminController extends Controller
     }
 
     public function events (){
-    	$data = Event::all();
-        return view('admin.events.index', ['events' => $data]);
+        $user = Auth::user();
+        if($user->user_type == "ADMIN"){
+            $data = Event::all();
+            return view('admin.events.index', ['events' => $data]);
+        }else{
+            return redirect()->route('home');
+        }
     }
 
     public function sponsors(){
-        $data = Sponsor::all();
-        return view('admin.sponsors.index', ['sponsors' => $data]);
+        $user = Auth::user();
+        if($user->user_type == "ADMIN"){
+            $data = Sponsor::all();
+            return view('admin.sponsors.index', ['sponsors' => $data]);
+        }else{
+            return redirect()->route('home');
+        }
     }
 
     public function startups(){
-        $data = Startup::all();
-        return view('admin.startups.index', ['startups' => $data]);
+        $user = Auth::user();
+        if($user->user_type == "ADMIN"){
+            $data = Startup::all();
+            return view('admin.startups.index', ['startups' => $data]);
+        }else{
+            return redirect()->route('home');
+        }
     }
 
     public function users(){
-        $data = User::all();
-        return view('admin.users.index', ['users' => $data]);
+        $user = Auth::user();
+        if($user->user_type == "ADMIN"){
+            $data = User::all();
+            return view('admin.users.index', ['users' => $data]);
+        }else{
+            return redirect()->route('home');
+        }       
     }
 
     public function speakers(){
-        $data = Speaker::all();
-        return view('admin.speakers.index',['speakers' => $data]);
+        $user = Auth::user();
+        if($user->user_type == "ADMIN"){
+            $data = Speaker::all();
+            return view('admin.speakers.index',['speakers' => $data]);
+        }else{
+            return redirect()->route('home');
+        }     
+    }
+
+    public function questionSets(){
+        $user = Auth::user();
+        if($user->user_type == "ADMIN"){
+            $data = QuestionSet::all();
+            return view('admin.questionSets.index',['questionSets' => $data]);
+        }else{
+            return redirect()->route('home');
+        }
+    }
+
+    public function questions(){
+        $user = Auth::user();
+        if($user->user_type == "ADMIN"){
+            $questionSets = QuestionSet::all();
+            $questions = Question::all();
+            return view('admin.questions.index',['questions' => $questions,'questionSets' => $questionSets]);
+        }else{
+            return redirect()->route('home');
+        }
     }
 }

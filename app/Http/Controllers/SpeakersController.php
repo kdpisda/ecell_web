@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class SpeakersController extends Controller{
     
     public function __construct(){
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['index', 'show','getSpeakerDetail','getSpeakersList']]);
     }
     
     /**
@@ -57,17 +57,7 @@ class SpeakersController extends Controller{
 
     /**
      * Display the specified resource.
-     *$speaker->name = $request->name;
-        $speaker->description = $request->description;
-        $speaker->owner = $request->owner;
-        $speaker->contact_no = $request->contact_no;
-        $speaker->contact_email = $request->contact_email;
-        $speaker->address = $request->address;
-        $speaker->user_id = Auth::id();
-        $speaker->venue = 'NULL';
-        $metaName = time().'.'.$request->meta->getClientOriginalExtension();
-        $request->meta->move(public_path('uploads/speakers'), $metaName);
-        $speaker->meta = $metaName;
+     *
      * @param  \App\Speakers  $speakers
      * @return \Illuminate\Http\Response
      */
@@ -208,6 +198,9 @@ class SpeakersController extends Controller{
     }
 
     public function getSpeakersList(){
-        
+        $speakers = DB::table('speakers')->where(
+                'status','=','approved'
+            )->get();
+        return response($speakers->toJson());
     }
 }

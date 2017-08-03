@@ -101,6 +101,8 @@
     <!-- /.content -->
   </div>
 <script>
-$("#dashboard_navbar").addClass("active");
+$('document').ready(function(){
+  $("#dashboard_navbar").addClass("active");
+});
 </script>
 @endsection

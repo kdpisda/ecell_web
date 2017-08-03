@@ -8,6 +8,8 @@
     <link rel="shortcut icon" href="/images/esummit_white.png" type="image/x-icon"> 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <!-- Owl -->
     <link rel="stylesheet" type="text/css" href="/css/owl.css">
     <!-- Animate.css -->
@@ -28,7 +30,7 @@
 <body>
     <div class="preloader">
         <img src="/images/esummit_black.png" alt="E-Cell NIT Raipur" height="150px">
-    </div>
+    </div> 
     <!--Modal Login/Signup-->
     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog">
@@ -38,7 +40,7 @@
                 </div>
                 <div id="div-forms">
                     <form id="login-form" method="POST" action="{{ route('login') }}">
-                    {{ csrf_field() }}
+                        {{ csrf_field() }}
                         <div class="modal-body">
                             <input id="login_username" class="form-control" type="text" placeholder="Username" required name="email">
                             <input id="login_password" class="form-control" type="password" placeholder="Password" required name="password">
@@ -144,10 +146,14 @@
             </div>
         </div>
     </nav>
-    <div class="main">
-        @section('content')
-        @show
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="main">
+                @section('content')
+                @show
+            </div>
+        </div>
     </div>
-    <script src="/js/login.js"></script>
+     <!-- <script src="/js/login.js"></script>  -->
 </body>
 </html>
