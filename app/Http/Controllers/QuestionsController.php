@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Question;
+use App\QuestionSet;
+use Auth;
 
 class QuestionsController extends Controller
 {
@@ -38,19 +41,26 @@ class QuestionsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
+
+        $timeLimit = $request->minutes + ":" + $request->seconds;
+        var_dump($timeLimit);
         $question = new Question;
-        $question->name = $request->name;
+        $question->question = $request->question;
         $question->description = $request->description;
-        $question->contact_no = $request->contact_no;
-        $question->contact_email = $request->contact_email;
+        $question->timelimit = $timeLimit;
+        $question->question_type = $request->question_type;
+        $question->score = $request->score;
+        $question->meta = $request->meta;
+        $question->question_set = $request->question_set;
         $question->user_id = Auth::id();
         $metaName = time().'.'.$request->meta->getClientOriginalExtension();
         $request->meta->move(public_path('uploads/questions'), $metaName);
+        $metaName = json_encode($metaName);
         $question->meta = $metaName;
-
-        if($question->save()) {
-            return redirect('/admin/questions');
-        }
+        
+        // if($question->save()) {
+        //     var_dump($question);
+        // }
     }
 
     /**
@@ -63,10 +73,10 @@ class QuestionsController extends Controller
         $len = strlen($id);
         $question_id = intval(substr($id, 7));        
         $question = DB::table('questions')->where([
-                ['speaker_id', '=', $question_id ],
+                ['question_id', '=', $question_id ],
                 ['status','=','approved']
             ])->get();
-        return view('questions.show', ['speaker' => $question]);
+        return view('questions.show', ['question' => $question]);
     }
 
     /**
@@ -90,7 +100,7 @@ class QuestionsController extends Controller
     public function update(Request $request, $id)
     {
         if($request->meta == null){
-            Question::where('speaker_id', '=' ,$id)
+            Question::where('question_id', '=' ,$id)
                 ->update([
                     'name' => $request->name,
                     'description' => $request->description,
@@ -102,7 +112,7 @@ class QuestionsController extends Controller
                 ]);
         }else{
             $metaName = time().'.'.$request->meta->getClientOriginalExtension();
-            Question::where('speaker_id', '=' ,$id)
+            Question::where('question_id', '=' ,$id)
                 ->update([
                     'name' => $request->name,
                     'description' => $request->description,
@@ -130,16 +140,16 @@ class QuestionsController extends Controller
     }
 
     public function getQuestionDetail($id){
-        $question = DB::table('questions')->where('speaker_id', '=', $id)->get();
+        $question = DB::table('questions')->where('question_id', '=', $id)->get();
         return response()->json([
-            'speaker_id' => $question[0]->speaker_id,
-            'speaker_name' => $question[0]->name,
-            'speaker_description'=> $question[0]->description,
-            'speaker_pic' => $question[0]->meta,
-            'speaker_owner' => $question[0]->owner,
-            'speaker_contact_no' => $question[0]->contact_no,
-            'speaker_contact_email' => $question[0]->contact_email,
-            'speaker_address' => $question[0]->address
+            'question_id' => $question[0]->question_id,
+            'question_name' => $question[0]->name,
+            'question_description'=> $question[0]->description,
+            'question_pic' => $question[0]->meta,
+            'question_owner' => $question[0]->owner,
+            'question_contact_no' => $question[0]->contact_no,
+            'question_contact_email' => $question[0]->contact_email,
+            'question_address' => $question[0]->address
         ]);
     }
     
@@ -147,7 +157,7 @@ class QuestionsController extends Controller
         $user = Auth::user();
         if($user->user_type == "ADMIN"){
             try{
-                $temp_event = Question::where('speaker_id',$id)
+                $temp_question = Question::where('question_id',$id)
                             ->update(['status' => 'approved']);
                 return response()->json([
                     'flag' => true,
@@ -173,11 +183,11 @@ class QuestionsController extends Controller
         $user = Auth::user();
         if($user->user_type == "ADMIN"){
             try{
-                $temp_event = Question::where('speaker_id',$id)
+                $temp_question = Question::where('question_id',$id)
                             ->update(['status' => 'unapproved']);
                 return response()->json([
                     'flag' => true,
-                    'message' => 'Event has been unapproved successfully you can approve it again whenever you want'
+                    'message' => 'Question has been unapproved successfully you can approve it again whenever you want'
                 ]);
             }
             catch (Exception $e) {

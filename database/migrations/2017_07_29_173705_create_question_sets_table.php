@@ -13,8 +13,9 @@ class CreateQuestionSetsTable extends Migration
      */
     public function up()
     {
-        Schema::table('question_sets', function (Blueprint $table) {
+        Schema::create('question_sets', function (Blueprint $table) {
             $table->increments('question_set_id');
+            $table->unique('question_set_id');
             $table->string('name',32);
             $table->string('set',32);
             $table->string('description',64)->nullable();

@@ -46,7 +46,7 @@ return array(
     'CreateEventsTable' => $baseDir . '/database/migrations/2017_07_17_164312_create_events_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateQuestionSetsTable' => $baseDir . '/database/migrations/2017_07_29_173705_create_question_sets_table.php',
-    'CreateQuestionsTable' => $baseDir . '/database/migrations/2017_07_29_143017_create_questions_table.php',
+    'CreateQuestionsTable' => $baseDir . '/database/migrations/2017_07_30_095051_create_questions_table.php',
     'CreateSpeakersTable' => $baseDir . '/database/migrations/2017_07_22_154812_create_speakers_table.php',
     'CreateSponsorsTable' => $baseDir . '/database/migrations/2017_07_19_150614_create_sponsors_table.php',
     'CreateStartupsTable' => $baseDir . '/database/migrations/2017_07_19_151040_create_startups_table.php',

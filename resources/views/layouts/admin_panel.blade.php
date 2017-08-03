@@ -805,18 +805,94 @@
 <div class="modal modal-info fade" id="add_question_modal">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Info Modal</h4>
-      </div>
-      <div class="modal-body">
-        <p>One fine body&hellip;</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-outline">Save changes</button>
-      </div>
+      <form role="form" enctype="multipart/form-data" method="POST" action="{{ route('questions.store') }}">
+        {{ csrf_field() }}
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Create A Question</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-question-circle"></i></span>
+                <input type="text" class="form-control" placeholder="Question" name="question" required>
+              </div>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-arrows-alt"></i></span>
+                <textarea type="text" row=5 class="form-control" placeholder="Question Description" name="description" required></textarea>
+              </div>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                <input type="text" row=5 class="form-control" placeholder="Question Score" name="score" required>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-file-picture-o"></i></span>
+                <input type="file" name="meta" class="form-control" multiple>
+              </div>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="input-group">
+                <label>Select Question Set</label>
+                 <select class="form-control" name="question_set">
+                @foreach ($questionSets as $questionSet)
+                   <option value="{{ $questionSet->question_set_id }}">{{ $questionSet->name }} {{ $questionSet->set }}</option> 
+                @endforeach
+                </select> 
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label>Time Limit</label>
+                <div class="row">
+                    <div class="col-lg-6">
+                      <select class="form-control" name="minutes">
+                        @for ($i = 0; $i <= 60; $i++)
+                          <option value="{{ $i }}">{{ $i }} Minutes</option>
+                        @endfor
+                      </select>
+                    </div>
+                    <div class="col-lg-6">
+                      <select class="form-control" name="seconds">
+                        @for ($i = 0; $i <= 59; $i++)
+                          <option value="{{ $i }}">{{ $i }} Seconds</option>
+                        @endfor
+                      </select>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label>Question Type</label>
+                <select class="form-control" name="question_type">
+                  <option value="text">Text</option>
+                  <option value="image">Image</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-outline">Save changes</button>
+        </div>
+      </form>
     </div>
     <!-- /.modal-content -->
   </div>
