@@ -13,8 +13,6 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/admin','AdminController@index');
-
 // Route::resource('login', 'LoginController');
 
 Route::resource('signup', 'SignupController');
@@ -100,3 +98,7 @@ Route::resource('speakers','SpeakersController');
 Route::resource('questionSets','QuestionSetsController');
 
 Route::resource('questions','QuestionsController');
+
+Route::group(['prefix' => 'blogs'], function () {
+    Voyager::routes();
+});

@@ -28,7 +28,7 @@ class AdminController extends Controller
 
     public function index(){
         $user = Auth::user();
-    	if($user->user_type == "ADMIN"){
+    	if($user->user_type == "ADMIN"){            
     		$data = array(
 	    		'users' => DB::table('users')->count(),
 	        	'events' => DB::table('events')->count(),
@@ -48,7 +48,7 @@ class AdminController extends Controller
         $user = Auth::user();
         if($user->user_type == "ADMIN"){
             $data = Event::all();
-            return view('admin.events.index', ['events' => $data]);
+            return view('admin.events.index', ['events' => $data,'questionSets' => QuestionSet::all()]);
         }else{
             return redirect()->route('home');
         }
@@ -58,7 +58,7 @@ class AdminController extends Controller
         $user = Auth::user();
         if($user->user_type == "ADMIN"){
             $data = Sponsor::all();
-            return view('admin.sponsors.index', ['sponsors' => $data]);
+            return view('admin.sponsors.index', ['sponsors' => $data,'questionSets' => QuestionSet::all()]);
         }else{
             return redirect()->route('home');
         }
@@ -68,7 +68,7 @@ class AdminController extends Controller
         $user = Auth::user();
         if($user->user_type == "ADMIN"){
             $data = Startup::all();
-            return view('admin.startups.index', ['startups' => $data]);
+            return view('admin.startups.index', ['startups' => $data,'questionSets' => QuestionSet::all()]);
         }else{
             return redirect()->route('home');
         }
@@ -78,7 +78,7 @@ class AdminController extends Controller
         $user = Auth::user();
         if($user->user_type == "ADMIN"){
             $data = User::all();
-            return view('admin.users.index', ['users' => $data]);
+            return view('admin.users.index', ['users' => $data,'questionSets' => QuestionSet::all()]);
         }else{
             return redirect()->route('home');
         }       
@@ -88,7 +88,7 @@ class AdminController extends Controller
         $user = Auth::user();
         if($user->user_type == "ADMIN"){
             $data = Speaker::all();
-            return view('admin.speakers.index',['speakers' => $data]);
+            return view('admin.speakers.index',['speakers' => $data,'questionSets' => QuestionSet::all()]);
         }else{
             return redirect()->route('home');
         }     
@@ -98,7 +98,7 @@ class AdminController extends Controller
         $user = Auth::user();
         if($user->user_type == "ADMIN"){
             $data = QuestionSet::all();
-            return view('admin.questionSets.index',['questionSets' => $data]);
+            return view('admin.questionSets.index',['questionSets' => $data,'questionSets' => QuestionSet::all()]);
         }else{
             return redirect()->route('home');
         }
