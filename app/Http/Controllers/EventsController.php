@@ -197,6 +197,15 @@ class EventsController extends Controller
         $events = DB::table('events')->where(
                 'status','=','approved'
             )->get();
-        return response($events->toJson());
+        if(!$events){
+            return response($events->all());
+        }else{
+            $data = array(
+                'flag' => false,
+                'message' => "Coming Soon",
+            );
+            $data = json_encode($data);
+            echo $data;
+        }
     }
 }

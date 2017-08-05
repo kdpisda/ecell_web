@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "859e5bf0b94b850e8436fcacc79c488d",
-    "content-hash": "f8de3aff80f65e96348f1bcde3f6c182",
+    "hash": "1fec105dc9ad9a930439d384d20c4bd9",
+    "content-hash": "b65ef37ddfa3b53efc151ac2da188ecd",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -1738,6 +1738,35 @@
                 "uuid"
             ],
             "time": "2017-03-26 20:37:53"
+        },
+        {
+            "name": "sendotp/sendotp",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MSG91/sendotp-php.git",
+                "reference": "b1c9ecb366104451d8f5a16bfdd46cf1b29a844a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MSG91/sendotp-php/zipball/b1c9ecb366104451d8f5a16bfdd46cf1b29a844a",
+                "reference": "b1c9ecb366104451d8f5a16bfdd46cf1b29a844a",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "sendotp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Rahul Chordiya",
+                    "email": "rahul@walkover.in"
+                }
+            ],
+            "time": "2017-04-13 05:59:54"
         },
         {
             "name": "swiftmailer/swiftmailer",

@@ -86,6 +86,8 @@ Route::get('/admin/users','AdminController@users')->name('admin_users');
 Route::get('/admin/speakers','AdminController@speakers')->name('admin_speakers');
 Route::get('/admin/questionSets','AdminController@questionSets')->name('admin_question_sets');
 Route::get('/admin/questions','AdminController@questions')->name('admin_questions');
+Route::post('/admin/sendotp','AdminController@sendotp')->name('sendotp');
+Route::get('/blogs/get_blogs_list','BlogsController@getBlogsList')->name('blogs_list');
 
 Route::resource('startups', 'StartupsController');
 
@@ -99,6 +101,6 @@ Route::resource('questionSets','QuestionSetsController');
 
 Route::resource('questions','QuestionsController');
 
-Route::group(['prefix' => 'blogs'], function () {
+Route::group(['prefix' => 'blogsadmin'], function () {
     Voyager::routes();
 });

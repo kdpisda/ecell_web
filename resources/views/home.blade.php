@@ -7,7 +7,7 @@
     <center>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-ls-12">
-                <img src="images/esummit_black.png" alt="E-Summit 17" class="img-rounded" height="400px">
+                <img src="/images/esummit_black.png" alt="E-Summit 17" class="img-rounded" height="400px">
             </div>
         </div>
         <div class="row">

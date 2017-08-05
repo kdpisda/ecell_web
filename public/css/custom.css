@@ -1,3 +1,5 @@
+ @import url(https://fonts.googleapis.com/css?family=Raleway);
+  
     body,html{
     	height: 100%;
 	}
@@ -5,13 +7,23 @@
 		padding: 0px;
 		margin: 0px;
 	}
+	
 	nav.sidebar.navbar {
 		border-radius: 0px;
 		background: black;
-		z-index:100;
+		z-index:200;
+		font-family:Raleway;
+		color: #32CD32 !important;
 	}
-    .navbar-brand{
-		color:#13c6f7;
+	nav a{
+		color:#32CD32;
+		
+		
+	}
+
+	.login{
+		text-align:left;
+		border-radius:0px;
 	}
 	.navbar-nav .open .dropdown-menu>li>a:hover {
 			color: #35acdf;;
@@ -25,12 +37,9 @@
 	.main{
 		padding: 10px 10px 0 10px;
 	}
-	.active{
-		background-color:#314190;
-		
-	}
+
 	.dropdown-toggle.active{
-		background-color:#1a1a1a;
+		background-color:#fff;;
 		
 	}
 	@media only screen and (max-width: 768px) {

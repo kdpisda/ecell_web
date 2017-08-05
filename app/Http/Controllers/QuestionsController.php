@@ -42,7 +42,7 @@ class QuestionsController extends Controller
      */
     public function store(Request $request){
 
-        $timeLimit = $request->minutes + ":" + $request->seconds;
+        $timeLimit = $request->minutes.":".$request->seconds;
         var_dump($timeLimit);
         $question = new Question;
         $question->question = $request->question;

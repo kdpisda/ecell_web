@@ -19,121 +19,118 @@
 <section>
     <div class="cut cut-top"></div>
     <div class="container">
-        <div class="row intro-tables">
-            <div class="col-md-4">
-                <div class="intro-table intro-table-first">
-                    <h5 class="white heading">Schedule</h5>
-                    <div class="owl-carousel owl-schedule bottom">
-                        <div class="item">
-                            <div class="schedule-row row">
-                                <div class="col-xs-6">
-                                    <h5 class="regular white">Inauguration</h5>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <h5 class="white">Coming soon...</h5>
-                                </div>
-                            </div>
-                            <div class="schedule-row row">
-                                <div class="col-xs-6">
-                                    <h5 class="regular white">Speaker-1</h5>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <h5 class="white">Coming soon..</h5>
-                                </div>
-                            </div>
-                            <div class="schedule-row row">
-                                <div class="col-xs-6">
-                                    <h5 class="regular white">Speaker-2</h5>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <h5 class="white">Coming soon..</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="schedule-row row">
-                                <div class="col-xs-6">
-                                    <h5 class="regular white">Speaker-3</h5>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <h5 class="white">Coming Soon...</h5>
-                                </div>
-                            </div>
-                            <div class="schedule-row row">
-                                <div class="col-xs-6">
-                                    <h5 class="regular white">Event</h5>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <h5 class="white">Coming Soon...</h5>
-                                </div>
-                            </div>
-                            <div class="schedule-row row">
-                                <div class="col-xs-6">
-                                    <h5 class="regular white">Event</h5>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <h5 class="white">Coming Soon...</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="schedule-row row">
-                                <div class="col-xs-6">
-                                    <h5 class="regular white">Event</h5>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <h5 class="white">Coming Soon...</h5>
-                                </div>
-                            </div>
-                            <div class="schedule-row row">
-                                <div class="col-xs-6">
-                                    <h5 class="regular white">Event</h5>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <h5 class="white">Coming Soon...</h5>
-                                </div>
-                            </div>
-                            <div class="schedule-row row">
-                                <div class="col-xs-6">
-                                    <h5 class="regular white">Event</h5>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <h5 class="white">Coming Soon...</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="intro-table intro-table-hover">
-                    <h5 class="white heading hide-hover">Register yourself!</h5>
-                    <div class="bottom">
-                        <h6 class="white heading small-heading no-margin regular">Register Today</h6>
-                        <a href="#" class="btn btn-white-fill expand">Register</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="intro-table intro-table-third">
-                    <h5 class="white heading">Brief</h5>
-                    <div class="owl-testimonials bottom">
-                        <div class="item">
-                            <h4 class="white heading content"> 10-11 September 2017</h4>
-                        </div>
-                        <div class="item">
-                            <h4 class="white heading content">DATE</h4>
-                            <h5 class="white heading light author"> 10-11 September 2017</h5>
-                        </div>
-                        <div class="item">
-                            <h4 class="white heading content">Incredible transformation and I feel so healthy!</h4>
-                            <h5 class="white heading light author">Christina Goldman</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+			<div class="row intro-tables">
+				<div class="col-md-4">
+					<div class="intro-table intro-table-first">
+						<h4 class="white heading">Schedule</h4>
+						<div class="owl-carousel owl-schedule bottom">
+							<div class="item">
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<p class="regular white">Event</p>
+									</div>
+									<div class="col-xs-6 text-right">
+										<p class="white">Coming soon...</p>
+									</div>
+								</div>
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<p class="regular white">Event</p>
+									</div>
+									<div class="col-xs-6 text-right">
+										<p class="white">Coming soon..</p>
+									</div>
+								</div>
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<p class="regular white">Event</p>
+									</div>
+									<div class="col-xs-6 text-right">
+										<p class="white">Coming soon..</p>
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<p class="regular white">Event</p>
+									</div>
+									<div class="col-xs-6 text-right">
+										<p class="white">Coming Soon...</p>
+									</div>
+								</div>
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<p class="regular white">Event</p>
+									</div>
+									<div class="col-xs-6 text-right">
+										<p class="white">Coming Soon...</p>
+									</div>
+								</div>
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<p class="regular white">Event</p>
+									</div>
+									<div class="col-xs-6 text-right">
+										<p class="white">Coming Soon...</p>
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<p class="regular white">Event</p>
+									</div>
+									<div class="col-xs-6 text-right">
+										<p class="white">Coming Soon...</p>
+									</div>
+								</div>
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<p class="regular white">Event</p>
+									</div>
+									<div class="col-xs-6 text-right">
+										<p class="white">Coming Soon...</p>
+									</div>
+								</div>
+								<div class="schedule-row row">
+									<div class="col-xs-6">
+										<p class="regular white">Event</p>
+									</div>
+									<div class="col-xs-6 text-right">
+										<p class="white">Coming Soon...</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="intro-table intro-table-hover">
+						<h4 class="white heading hide-hover">Register yourself!</h4>
+						<div class="bottom">
+							<h6 class="white heading small-heading no-margin regular">Portal to be opened soon</h6>
+							<a href="#" class="btn btn-white-fill expand">Portal yet to be opened</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="intro-table intro-table-third">
+					<h4 class="white heading">Notifications</h4>
+						    <div class="item">
+								<div class="schedule-row row">
+									<div class="col-xs-12">
+										<ul>
+										<li class="regular white" style="margin-bottom:10px;">E-Summit '17 Official Home Page launched</li>
+										<li class="regular white">E-Cell collaborates with Start-Up Initiative by Government of India</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
 </section>
 <section id="events" class="section section-padded">
     <div class="container">

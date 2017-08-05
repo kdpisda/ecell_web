@@ -345,6 +345,11 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
+        <li class="treeview" id="dashboard_navbar">
+          <a href="#">
+            <li><a href="#" data-toggle = "modal" data-target="#send_otp_modal"><i class="fa fa-circle-o"></i> Send OTP</a></li>
+          </a>
+        </li>
         <li class="treeview" id="events_navbar">
           <a href="#">
             <i class="ion ion-calendar"></i>
@@ -905,11 +910,42 @@
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Message</h4>
             </div>
             <div class="modal-body">
                 <p id="message_call"></p>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-success" tabindex="-1" role="dialog" id="send_otp_modal">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <form method="POST" action="/admin/sendotp">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Enter Mobile Number</h4>
+              </div>
+              <div class="modal-body">
+                  {{ csrf_field() }}
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-file-picture-o"></i></span>
+                        <input type="text" name="number" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-outline">Save changes</button>
+              </div>
+            </form>
         </div>
     </div>
 </div>
