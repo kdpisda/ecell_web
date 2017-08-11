@@ -19,10 +19,7 @@ class EventsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $data = DB::table('events')->where(
-                'status','=','approved'
-            )->get();
-        return view('events.index', ['events' => $data]);
+        return view('events.index');
     }
 
     /**
@@ -197,7 +194,7 @@ class EventsController extends Controller
         $events = DB::table('events')->where(
                 'status','=','approved'
             )->get();
-        if(!$events){
+        if($events->count() != 0){
             return response($events->all());
         }else{
             $data = array(
@@ -205,7 +202,7 @@ class EventsController extends Controller
                 'message' => "Coming Soon",
             );
             $data = json_encode($data);
-            echo $data;
+            return $data;
         }
     }
 }

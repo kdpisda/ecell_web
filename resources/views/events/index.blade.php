@@ -3,116 +3,53 @@
 
 @section('content')
 @parent
-<div class="container">
-    <center>
-        <div class="row">
-        @foreach ($events as $event)
-            <div class="col-xs-12 col-sm-12 col-md-4 col-ls-4">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
-                            {{ $event->title }}
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-                        @if($event->meta == '')
-                            <img src="/images/esummit_black.png" alt="E-Summit" class="img-rounded" width="100px">
-                        @else
-                            <img src="/uploads/events/{{ $event->meta }}" alt="E-Summit" class="img-rounded" height="150px" >
-                        @endif
-                        <blockquote>
-                            <h1><a href="/events/ES2k1700{{ $event->event_id }}">{{ $event->description }}</a></h1>
-                        </blockquote>
-                        <p> {{ $event->details }} </p>
-                    </div>
-                    <div class="panel-footer">
-                        <span class="glyphicon glyphicon-map-marker" area-hidden="true"></span>
-                        {{ $event->venue }}
-                    </div>
-                </div>
-            </div>
-        @endforeach
-        </div>
-    </center>
-    <!-- <div id="add_event_modal" uk-modal="center: true">
-        <div class="uk-modal-dialog">
-            <button class="uk-modal-close-default uk-close" type="button" ></button>
-            <div class="uk-modal-header">
-                <h2 class="uk-modal-title">Modal Title</h2>
-            </div>
-            <div class="uk-modal-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
-            <div class="uk-modal-footer uk-text-right">
-                <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-                <button class="uk-button uk-button-primary" type="button">Save</button>
+<section class="slide-wrapper">
+    <div class="container">
+        <div id="myCarousel" class="carousel slide">
+            <!-- Indicators -->
+            <ol class="carousel-indicators" id="events_indicator">
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" id="event_container">
             </div>
         </div>
-    </div> -->
-    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="add_event_modal">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="gridSystemModalLabel">Add an event</h4>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="input-group">
-                        <span class="input-group-addon" id="event_title">Title</span>
-                        <input type="text" class="form-control" placeholder="Event Title">
-                    </div>
-                </div>
-            </div><br>
-            <div class="row">
-              <div class="col-lg-12">
-                    <div class="input-group">
-                        <span class="input-group-addon" id="event_description">Description</span>
-                        <input type="text" class="form-control" placeholder="Event Description">
-                    </div>
-                </div>
-            </div><br>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="input-group">
-                        <span class="input-group-addon" id="event_detail">Detail</span>
-                        <textarea placeholder="Event Details"></textarea>
-                    </div>
-                </div>
-            </div><br> 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="input-group">
-                        <span class="input-group-addon" id="event_image">Image</span>
-                        <input type="file" class="form-control" placeholder="Event Image">
-                    </div>
-                </div>
-            </div><br>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="input-group">
-                        <span class="input-group-addon" id="event_venue">Venue</span>
-                        <input type="text" class="form-control" placeholder="Event Venue">
-                    </div>
-                </div>
-            </div><br>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="input-group">
-                        <span class="input-group-addon" id="event_time">Time</span>
-                        <input type="datetime" class="form-control" placeholder="Event Time">
-                    </div>
-                </div>
-            </div><br>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
     </div>
-</div>
+</section>
+<script>
+$(document).ready(function(){
+    $.ajax({
+        url: 'events/get_events_list',
+        success: function(data){
+            var container = $('#event_container');
+            var container_indicator = $('#events_indicator');
+            var slide, indicator;
+            for(i in data){
+                if(i == 0){
+                    slide += "<div class=\"item item"+i +" active\">";
+                    indicator = "<li data-target=\"#myCarousel\" data-slide-to=\""+i+"\" class=\"active\"></li>";
+                }else{
+                    slide += "<div class=\"item\">";
+                    indicator += "<li data-target=\"#myCarousel\" data-slide-to=\""+i+"\"></li>";
+                }
+                slide += "<div class=\"fill\" style=\" background-color:#48c3af;\">";
+                slide += "<div class=\"inner-content\">";
+                slide += "<div class=\"carousel-img\">";
+                slide += "<img src=\"/uploads/events/"+ data[i]['meta'] +"\" class=\"img img-responsive\" />";
+                slide += "</div>";
+                slide += "<div class=\"carousel-desc\">";
+                slide += "<h2>"+data[i]['title']+"</h2><p>";
+                slide += data[i]['details'];
+                slide += "</p></div></div></div></div></div>";
+            }
+            console
+            container.html(slide);
+            container_indicator.html(indicator);
+        },
+        error:function(){
+            alert("It seems like you are not connected to the internet");
+        }
+    });
+});
+</script>
 @endsection

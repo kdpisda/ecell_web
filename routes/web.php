@@ -88,6 +88,7 @@ Route::get('/admin/questionSets','AdminController@questionSets')->name('admin_qu
 Route::get('/admin/questions','AdminController@questions')->name('admin_questions');
 Route::post('/admin/sendotp','AdminController@sendotp')->name('sendotp');
 Route::get('/blogs/get_blogs_list','BlogsController@getBlogsList')->name('blogs_list');
+Route::get('/pages/get_pages_list','PagesController@getPagesList')->name('pages_list');
 
 Route::resource('startups', 'StartupsController');
 
