@@ -1,17 +1,4 @@
 
-.bgimg-1, .bgimg-2, .bgimg-3 , .bgimg-4{
-  position: relative;
-  opacity: 0.65;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-}
-.bgimg-1 {
-  background-image: url("https://esummit17.files.wordpress.com/2017/06/img_7065-e1498061823949.jpg?w=1180&h=435&crop=1");
-  min-height: 100%;
-}
 section li{
 	margin-top:5px;
 	margin-bottom:5px;
@@ -19,23 +6,15 @@ section li{
 section{
 	font-size:15px !important;
 }
+.img-responsive {
+    margin: 0 auto;
+	padding-bottom:10px;
+}
 #myCarousel .btn{
 	margin-bottom:30px !important;
 	
 }
-.bgimg-2 {
-  background-image: url("https://esummit17.files.wordpress.com/2017/06/img_7065-e1498061823949.jpg?w=1180&h=435&crop=1");
-  min-height: 400px;
-}
 
-.bgimg-3 {
-  background-image: url("https://esummit17.files.wordpress.com/2017/06/img_7065-e1498061823949.jpg?w=1180&h=435&crop=1");
-  min-height: 400px;
-}
-.bgimg-4 {
-  background-image: url("https://esummit17.files.wordpress.com/2017/06/img_7065-e1498061823949.jpg?w=1180&h=435&crop=1");
-  min-height: 400px;
-}
 .caption {
   position: absolute;
   left: 0;
@@ -59,10 +38,20 @@ section{
   color: #111;
 }
 
-/* Turn off parallax scrolling for tablets and phones */
-@media only screen and (max-device-width: 1024px) {
-    .bgimg-1, .bgimg-2, .bgimg-3 {
-        background-attachment: scroll;
-	}
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	top:40px;
+	right:40px;
+	background-color:#06C;
+	color:#fff;
+	border-radius:50px;
+	text-align:center;
+	z-index:999;
+}
 
+.my-float{
+	font-size:24px;
+	margin-top:18px;
 }

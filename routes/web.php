@@ -80,6 +80,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin','AdminController@index')->name('admin');
 
 Route::get('/admin/events','AdminController@events')->name('admin_events');
+Route::get('/admin/events/add','AdminController@addEvent')->name('add_events_admin');
+Route::get('/admin/events/edit/{id}','AdminController@editEvent')->name('edit_events_admin');
 Route::get('/admin/sponsors','AdminController@sponsors')->name('admin_sponsors');
 Route::get('/admin/startups','AdminController@startups')->name('admin_startups');
 Route::get('/admin/users','AdminController@users')->name('admin_users');

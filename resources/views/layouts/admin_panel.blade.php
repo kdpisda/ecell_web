@@ -345,11 +345,6 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
-        <li class="treeview" id="dashboard_navbar">
-          <a href="#">
-            <li><a href="#" data-toggle = "modal" data-target="#send_otp_modal"><i class="fa fa-circle-o"></i> Send OTP</a></li>
-          </a>
-        </li>
         <li class="treeview" id="events_navbar">
           <a href="#">
             <i class="ion ion-calendar"></i>
@@ -360,7 +355,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="/admin/events"><i class="fa fa-circle-o"></i> All Events</a></li>
-            <li><a href="#" data-toggle = "modal" data-target="#add_event_modal"><i class="fa fa-circle-o"></i> Add an event</a></li>
+            <li><a href="/admin/events/add"><i class="fa fa-circle-o"></i> Add an event</a></li>
           </ul>
         </li>
         <li class="treeview" id="startups_navbar">
@@ -430,7 +425,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 0.1
     </div>
-    <strong>Copyright &copy; 2017 <a href="http://ecell.nitrr.ac.in">Entrepreneurship Cell NIT Raipur</a>.</strong> All rights
+    <strong>Copyright &copy; 2017 <a href="https://ecell.nitrr.ac.in">Entrepreneurship Cell NIT Raipur</a>.</strong> All rights
     reserved.
   </footer>
 
@@ -439,99 +434,6 @@
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
-<!-- Add Event Modal -->
-<div class="modal modal-info fade" id="add_event_modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form role="form" enctype="multipart/form-data" method="POST" action="{{ route('events.store') }}">
-            {{ csrf_field() }}
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="gridSystemModalLabel">Add an event</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="input-group">
-                            <span class="input-group-addon" id="event_title">Title</span>
-                            <input type="text" class="form-control" placeholder="Event Title" name="title" required>
-                        </div>
-                    </div>
-                </div><br>
-                <div class="row">
-                  <div class="col-lg-12">
-                        <div class="input-group">
-                            <span class="input-group-addon" id="event_description">Description</span>
-                            <input type="text" class="form-control" placeholder="Event Description" name="description" required>
-                        </div>
-                    </div>
-                </div><br>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="input-group">
-                            <span class="input-group-addon" id="event_detail">Detail</span>
-                            <textarea placeholder="Event Details" class="form-control" rows="5" name="details" required></textarea>
-                        </div>
-                    </div>
-                </div><br> 
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="input-group">
-                            <label for="event_image">Event Image</label>
-                            <input type="file" id="event_image" name="meta" required>
-                        </div>
-                    </div>
-                </div><br>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="input-group">
-                            <span class="input-group-addon" id="event_venue">Venue</span>
-                            <input type="text" class="form-control" placeholder="Event Venue" name="venue" required>
-                        </div>
-                    </div>
-                </div><br>
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label>Event Date:</label>
-                      <div class="input-group date">
-                        <div class="input-group-addon">
-                          <i class="fa fa-calendar"></i>
-                        </div>
-                        <input type="text" name="date" class="form-control pull-right" id="datepicker" required>
-                      </div>
-                    </div><br>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="bootstrap-timepicker">
-                      <div class="form-group">
-                        <label>Event Time :</label>
-
-                        <div class="input-group">
-                          <input type="text" name="time" class="form-control timepicker" required>
-
-                          <div class="input-group-addon">
-                            <i class="fa fa-clock-o"></i>
-                          </div>
-                        </div>
-                        <!-- /.input group -->
-                      </div>
-                      <!-- /.form group -->
-                    </div>
-                  </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
-        </form>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-<!-- End Add Event Modal -->
 
 <!-- Add Startup Modal -->
 <div class="modal modal-info fade" id="add_startup_modal">
@@ -853,9 +755,7 @@
               <div class="input-group">
                 <label>Select Question Set</label>
                  <select class="form-control" name="question_set">
-                @foreach ($questionSets as $questionSet)
-                   <option value="{{ $questionSet->question_set_id }}">{{ $questionSet->name }} {{ $questionSet->set }}</option> 
-                @endforeach
+                
                 </select> 
               </div>
             </div>
@@ -949,7 +849,6 @@
         </div>
     </div>
 </div>
-
 <!-- jQuery 3 -->
 <script src="/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -1006,5 +905,7 @@
     $('#example1').DataTable()
   })
 </script>
+@section("scripts")
+@show
 </body>
 </html>

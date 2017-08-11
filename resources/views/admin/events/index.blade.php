@@ -80,7 +80,7 @@
                         <td>{{ $event->date }}</td>
                         <td>{{ $event->time }}</td>
                         <td>{{ $event->updated_at }}</td>
-                        <td><button type="button" class="btn btn-default" onclick="edit_event({{ $event->event_id }})"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button></td>
+                        <td><a href="/admin/events/edit/{{ $event->event_id }}">Edit</a></td>
                         <td><button type="button" class="btn btn-default" onclick="delete_event({{ $event->event_id }})"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td>
                     </tr>
                 @endforeach

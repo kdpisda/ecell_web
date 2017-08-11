@@ -275,6 +275,15 @@
         </div>
     </div>
 </section>
+<section id="startupindia">
+    <div style="color:#ddd;background-color:#282E34;padding:50px 15px;text-align: left;">
+        <div class="text-center">
+            <img src="/images/Startindia.png" width="300px">
+            <hr style="width:20%;"><br><br>
+        </div>
+        <p style="color:#fff;">The Entrepreneurship- Cell has collaborated with StartupIndia for this session. Startup India campaign is based on an action plan aimed at promoting bank financing for start-up ventures to boost entrepreneurship and encourage start ups with jobs creation. The campaign was first announced by Prime Minister Narendra Modi in his 15 August 2015 address from the Red Fort. The Reserve Bank of India said it will take steps to help improve the ‘ease of doing business’ in the country and contribute to an ecosystem that is conducive for the growth of start-up businesses.</p>
+    </div>
+</section>
 <section id="map">
     <div class="map-responsive">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3718.5546355380966!2d81.60303361434238!3d21.24950218558309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a28dde213f66723%3A0x21543965c50c43c7!2sNational+Institute+of+Technology+Raipur!5e0!3m2!1sen!2sin!4v1465033368318" width="400" height="300" frameborder="0" style="border:0" allowfullscreen=""></iframe>

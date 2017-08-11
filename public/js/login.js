@@ -1,5 +1,5 @@
 
-$('document').ready(function() {
+   $(function() {
     
     var $formLogin = $('#login-form');
     var $formLost = $('#lost-form');

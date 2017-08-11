@@ -63,4 +63,12 @@ jQuery(function($) {
 	$(window).resize(function() {
 		$('header').height($(window).height());
 	});
+	$(".map-responsive").click(function() {
+		$(".map-responsive iframe").css("pointer-events", "auto");
+});
+	
+$(".map-responsive").mouseleave(function() {
+		$(".map-responsive iframe").css("pointer-events", "none");
+});
+
 });

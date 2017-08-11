@@ -116,39 +116,22 @@ class AdminController extends Controller
         }
     }
 
-    public function sendotp(Request $request){
-        $number = $request->number;
-        $otp = rand(1000, 9000);
-        // $otp = new sendotp('152650A2rKR1LLy5985518f','Your otp for E-Cell NITRR is {{otp}}. Please do not share it with anybody.');
-        // print_r($otp->send($number, 'ECellR'));
-        $curl = curl_init();
-
-        curl_setopt_array($curl, array(
-        CURLOPT_URL => "https://sokt.io/gAKzpbM79y9kb4cpPxp9/personal-e-cell-testing?mobile_no=".$number."&otp=".$otp,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => "{\"hello\":\"world\"}",
-        CURLOPT_SSL_VERIFYHOST => 0,
-        CURLOPT_SSL_VERIFYPEER => 0,
-        CURLOPT_HTTPHEADER => array(
-            "authkey: y1PS3qVWevj7cZrQzEu7",
-            "content-type: application/json"
-        ),
-        ));
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
-            echo "cURL Error #:" . $err;
-        } else {
-            echo $response;
+    public function addEvent(){
+        $user = Auth::user();
+        if($user->user_type == "ADMIN"){
+            return view('admin.events.add');
+        }else{
+            return redirect()->route('home');
         }
-    }   
+    }
+
+    public function editEvent($id){
+        $user = Auth::user();
+        if($user->user_type == "ADMIN"){
+            $event = Event::where('event_id',$id)->first();
+            return view('admin.events.edit',['event' => $event]);
+        }else{
+            return redirect()->route('home');
+        }
+    }
 }
