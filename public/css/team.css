@@ -1,6 +1,5 @@
 #team{
-	background-image:url("../img/dark_leather.jpg");
-	background-repeat: repeat-y|repeat-x;
+	background-color:#282E34;
 	color:#fff;
 }
 .ch-grid {
@@ -84,20 +83,72 @@
 	opacity: 0;
 }
 .ch-img-0 { 
-	background-image: url(../img/logo-final.png);
+	background-image: url(/images/director.jpg);
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
+
+.ch-img-dean { 
+	background-image: url(/images/dean.jpg);
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.ch-img-incharge { 
+	background-image: url(/images/incharge.jpg);
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 .ch-img-1 { 
-	background-image: url(../img/logo-final.png);
+	background-image: url(/images/Team-01.png);
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .ch-img-2 { 
-	background-image: url(../images/20.jpg);
+	background-image: url(/images/Team-02.png);
 }
-
 .ch-img-3 { 
-	background-image: url(../images/21.jpg);
+	background-image: url(/images/Team-03.png);
+}
+.ch-img-4 { 
+	background-image: url(/images/Team-04.png);
+}
+.ch-img-5 { 
+	background-image: url(/images/Team-05.png);
+}
+.ch-img-6 { 
+	background-image: url(/images/Team-06.png);
+}
+.ch-img-7 { 
+	background-image: url(/images/Team-07.png);
+}
+.ch-img-8 { 
+	background-image: url(/images/Team-08.png);
 }
 
+.ch-img-9 { 
+	background-image: url(/images/Team-09.png);
+}
+
+.ch-img-10 { 
+	background-image: url(/images/Team-10.png);
+}
+.ch-img-11 { 
+	background-image: url(/images/Team-11.png);
+}
+.ch-img-12 { 
+	background-image: url(/images/Team-12.png);
+}
 .ch-info h3 {
 	color: #fff;
 	text-transform: uppercase;
@@ -169,9 +220,6 @@
 }
 
 #teamlist tr:nth-child(even){background-color: green;}
-
-#teamlist tr:hover {background-color: red;}
-
 #teamlist th {
     padding-top: 12px;
     padding-bottom: 12px;

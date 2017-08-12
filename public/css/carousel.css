@@ -65,47 +65,50 @@ p {
 	
 }
 .item img{margin:auto;visibility:hidden; opacity:0; transition:all 0.3s ease; -webkit-transition:all 0.3s ease; -moz-transition:all 0.3s ease; -ms-transition:all 0.3s ease; -o-transition:all 0.3s ease;}
-.item1 .carousel-img img , .item1.active .carousel-img img{max-height:300px;}
-.item1.active .carousel-img img.animated{visibility:visible; opacity:1; transition:all 1s ease; -webkit-transition:all 1s ease; -moz-transition:all 1s ease; -ms-transition:all 1s ease; -o-transition:all 1s ease;
-animation-duration:2s; -webkit-animation-duration:2s; -moz-animation-duration:2s; -ms-animation-duration:2s; -o-animation-duration:2s; animation-delay:0.3s ; -webkit-animation-delay:0.3s;
--moz-animation-delay:0.3s;-ms-animation-delay:0.3s; }
 .item .carousel-desc{color:white !important; text-align:center;}
 .item  h2{font-size:50px; animation-delay:1.5s;animation-duration:1s; }
 .item  p{animation-delay:2.5s;animation-duration:1s; width:50%; margin:auto;}
 
+.item1 .carousel-img img , .item1.active .carousel-img img{max-height:300px;}
+.item1.active .carousel-img img.animated{visibility:visible; opacity:1; transition:all 1s ease; -webkit-transition:all 1s ease; -moz-transition:all 1s ease; -ms-transition:all 1s ease; -o-transition:all 1s ease;
+animation-duration:2s; -webkit-animation-duration:2s; -moz-animation-duration:2s; -ms-animation-duration:2s; -o-animation-duration:2s; animation-delay:0.3s ; -webkit-animation-delay:0.3s;
+-moz-animation-delay:0.3s;-ms-animation-delay:0.3s; }
+.item1.active h2.animate {visibility:visible; opacity:1;  animation-delay:3s;}
+
 .item2 .carousel-img img , .item2.active .carousel-img img{max-height:300px;}
-.item2.active .carousel-img img.animated{visibility:visible; opacity:1; transition:all 0.3s ease; animation-duration:3s; animation-delay:0.3s}
-.item2 h2 , item2.active h2{visibility:hidden; opacity:0; transition:all 5s ease;}
-.item2.active h2.animated{visibility:visible; opacity:1;  animation-delay:3s;}
+.item2.active .carousel-img img.animated{visibility:visible; opacity:1; transition:all 1s ease; -webkit-transition:all 1s ease; -moz-transition:all 1s ease; -ms-transition:all 1s ease; -o-transition:all 1s ease;
+animation-duration:2s; -webkit-animation-duration:2s; -moz-animation-duration:2s; -ms-animation-duration:2s; -o-animation-duration:2s; animation-delay:0.3s ; -webkit-animation-delay:0.3s;
+-moz-animation-delay:0.3s;-ms-animation-delay:0.3s; }
+.item2.active h2.animate {visibility:visible; opacity:1;  animation-delay:3s;}
 
 .item3 .carousel-img img , .item3.active .carousel-img img{max-height:300px;}
 .item3.active .carousel-img img.animated{visibility:visible; opacity:1; transition:all 1s ease; -webkit-transition:all 1s ease; -moz-transition:all 1s ease; -ms-transition:all 1s ease; -o-transition:all 1s ease;
 animation-duration:2s; -webkit-animation-duration:2s; -moz-animation-duration:2s; -ms-animation-duration:2s; -o-animation-duration:2s; animation-delay:0.3s ; -webkit-animation-delay:0.3s;
 -moz-animation-delay:0.3s;-ms-animation-delay:0.3s; }
-.item  h2{font-size:50px; animation-delay:1.5s;animation-duration:1s; }
-.item  p{animation-delay:2.5s;animation-duration:1s; width:50%; margin:auto;}
+.item3.active h2.animate {visibility:visible; opacity:1;  animation-delay:3s;}
 
 .item4 .carousel-img img , .item4.active .carousel-img img{max-height:300px;}
-.item4.active .carousel-img img.animated{visibility:visible; opacity:1; transition:all 0.3s ease; animation-duration:3s; animation-delay:0.3s}
-.item4 h2 , item2.active h2{visibility:hidden; opacity:0; transition:all 5s ease;}
-.item4.active h2.animated{visibility:visible; opacity:1;  animation-delay:3s;}
+.item4.active .carousel-img img.animated{visibility:visible; opacity:1; transition:all 1s ease; -webkit-transition:all 1s ease; -moz-transition:all 1s ease; -ms-transition:all 1s ease; -o-transition:all 1s ease;
+animation-duration:2s; -webkit-animation-duration:2s; -moz-animation-duration:2s; -ms-animation-duration:2s; -o-animation-duration:2s; animation-delay:0.3s ; -webkit-animation-delay:0.3s;
+-moz-animation-delay:0.3s;-ms-animation-delay:0.3s; }
+.item4.active h2.animate {visibility:visible; opacity:1;  animation-delay:3s;}
 
 .item5 .carousel-img img , .item5.active .carousel-img img{max-height:300px;}
 .item5.active .carousel-img img.animated{visibility:visible; opacity:1; transition:all 1s ease; -webkit-transition:all 1s ease; -moz-transition:all 1s ease; -ms-transition:all 1s ease; -o-transition:all 1s ease;
 animation-duration:2s; -webkit-animation-duration:2s; -moz-animation-duration:2s; -ms-animation-duration:2s; -o-animation-duration:2s; animation-delay:0.3s ; -webkit-animation-delay:0.3s;
 -moz-animation-delay:0.3s;-ms-animation-delay:0.3s; }
-.item  h2{font-size:50px; animation-delay:1.5s;animation-duration:1s; }
-.item  p{animation-delay:2.5s;animation-duration:1s; width:50%; margin:auto;}
+.item5.active h2.animate {visibility:visible; opacity:1;  animation-delay:3s;}
 
 .item6 .carousel-img img , .item6.active .carousel-img img{max-height:300px;}
-.item6.active .carousel-img img.animated{visibility:visible; opacity:1; transition:all 0.3s ease; animation-duration:3s; animation-delay:0.3s}
-.item6 h2 , item2.active h2{visibility:hidden; opacity:0; transition:all 5s ease;}
-.item6.active h2.animated{visibility:visible; opacity:1;  animation-delay:3s;}
+.item6.active .carousel-img img.animated{visibility:visible; opacity:1; transition:all 1s ease; -webkit-transition:all 1s ease; -moz-transition:all 1s ease; -ms-transition:all 1s ease; -o-transition:all 1s ease;
+animation-duration:2s; -webkit-animation-duration:2s; -moz-animation-duration:2s; -ms-animation-duration:2s; -o-animation-duration:2s; animation-delay:0.3s ; -webkit-animation-delay:0.3s;
+-moz-animation-delay:0.3s;-ms-animation-delay:0.3s; }
+.item6.active h2.animate {visibility:visible; opacity:1;  animation-delay:3s;}
 @media(max-width:991px)
 {
-	.item .carousel-desc , .item.item3 .carousel-desc{text-align:center;}
+	.item .carousel-desc , .carousel-desc{text-align:center;}
 	.item .carousel-desc p {width:80%;}
-	.item3 .col-md-6{width:100%; text-align:center;}
+	.item .col-md-6{width:100%; text-align:center;}
 }
 @media(max-width:768px)
 {

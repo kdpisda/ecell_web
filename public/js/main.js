@@ -70,5 +70,11 @@ jQuery(function($) {
 $(".map-responsive").mouseleave(function() {
 		$(".map-responsive iframe").css("pointer-events", "none");
 });
+$('.dotstyle ul li').click(function() {
+    var i = $(this).index();
+    $('.fullarticle').hide(600);
+    $('#article' + (i+1)).show(600);
+	$('#article' + (i+1)).addClass("current");
+});
 
 });

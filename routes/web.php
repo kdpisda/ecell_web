@@ -12,6 +12,9 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::get('/vision', 'HomeController@vision');
+Route::get('/team','HomeController@team');
+Route::get('/blogs','HomeController@blogs');
 
 // Route::resource('login', 'LoginController');
 

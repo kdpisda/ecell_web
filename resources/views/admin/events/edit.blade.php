@@ -30,9 +30,10 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <form role="form" enctype="multipart/form-data" method="POST" action="/events/update_event">
+                        <form role="form" enctype="multipart/form-data" method="POST" action="/events/{{ $event->event_id }}">
                             {{ csrf_field() }}
                             {{ method_field('PUT') }}
+                            <input type="hidden" name="event_id" value="{{ $event->event_id }}">
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -45,7 +46,7 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <textarea class="" name="description" id="event_description" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px; color: #000000;" required></textarea>
+                                        <textarea class="textarea" name="description" id="event_description" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px; color: #000000;" required></textarea>
                                     </div>
                                 </div>
                                 <br>
@@ -68,7 +69,7 @@
                                     <div class="col-lg-12">
                                         <div class="input-group">
                                             <span class="input-group-addon" id="event_venue">Venue</span>
-                                            <input type="text" class="form-control" placeholder="Event Venue" value="{{ $event->venue }}" required>
+                                            <input type="text" class="form-control" placeholder="Event Venue" value="{{ $event->venue }}" name="venue" required>
                                         </div>
                                     </div>
                                 </div>

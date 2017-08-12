@@ -16,15 +16,10 @@ class CreateTeamTable extends Migration
         Schema::create('team_members', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('branch')->nullable();
-            $table->bigInteger('contact_no')->nullable();
-            $table->string('institute')->nullable();
-            $table->enum('semester', ['I', 'III', 'V', 'VII'])->nullable();
-            $table->enum('user_type', ['ADMIN','EXECUTIVE','MANAGER','COORDINATOR','GUEST','AMBASSADOR'])->default('GUEST');
-            $table->string('password');
-            $table->integer('otp')->default(0);
-            $table->boolean('status')->default(False);
+            $table->string('meta');
+            $table->enum('position', ['overall', 'head','managers','executive'])->default('executive');
+            $table->enum('status', ['unapproved', 'approved'])->default('unapproved');
+            $table->string('linkedin');
             $table->rememberToken();
             $table->timestamps();
         });

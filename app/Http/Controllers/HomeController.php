@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth',['except' => 'index']);
+        // $this->middleware('auth',['except' => 'index']);
     }
 
     /**
@@ -33,5 +33,19 @@ class HomeController extends Controller
         $users = DB::table('users')->count();
         $events = DB::table('events')->count();
         return view('home',['events'=>$events,'users'=>$users]);
+    }
+
+    public function vision()
+    {
+        return view('vision');
+    }
+
+    public function team()
+    {
+        return view('team');
+    }
+
+    public function blogs(){
+        return view('blogs');
     }
 }

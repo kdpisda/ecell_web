@@ -19,10 +19,38 @@
                 <div id="myCarousel" class="carousel slide">
                     <!-- Indicators -->
                     <ol class="carousel-indicators" id="events_indicator">
+                        @foreach ( $events as $event)
+                            @if ( $loop->index == 0)
+                                <li data-target="#myCarousel" data-slide-to="{{ $loop->index }}" class="active"></li>
+                            @else
+                                <li data-target="#myCarousel" data-slide-to="{{ $loop->index }}"></li>
+                            @endif
+                        @endforeach
                     </ol>
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" id="events_container">
+                        @foreach ( $events as $event)     
+                            @if($loop->index == 0)                   
+                                <div class="item item{{ $loop->index + 1 }} active">
+                            @else
+                                <div class="item item{{ $loop->index + 1 }}">
+                            @endif
+                                <div class="fill" style=" background-color:#48c3af;">
+                                    <div class="inner-content">
+                                        <div class="carousel-img">
+                                            <img src="/uploads/events/{{ $event->meta }}" class="img img-responsive" />
+                                        </div>
+                                        <div class="carousel-desc">
+                                            <h2>{{ $event->title }}</h2>
+                                            <p>{{ $event->description }}</p>
+                                            <!-- <button type="button" class="btn btn-primary" id="startup">Read more</button> -->
+                                            <br><br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -443,44 +471,49 @@
 
 @section("scripts")
 <script>
-    $("#events_navbar").addClass("active");
-    $(document).ready(function(){
-        $.ajax({
-            url: '/events/get_events_list',
-            success: function(data){
-                var container = $('#events_container');
-                var container_indicator = $('#events_indicator');
-                var slide = '';
-                var indicator = '';
-                for(i in data){
-                    if(i == 0){
-                        slide += "<div class=\"item active\">";
-                        indicator = "<li data-target=\"#myCarousel\" data-slide-to=\""+i+"\" class=\"active\"></li>";
-                    }else{
-                        slide += "<div class=\"item\">";
-                        indicator += "<li data-target=\"#myCarousel\" data-slide-to=\""+i+"\"></li>";
-                    }
-                    slide += "<div class=\"fill\" style=\" background-color:#48c3af;\">";
-                    slide += "<div class=\"inner-content\">";
-                    slide += "<div class=\"carousel-img\">";
-                    slide += "<img src=\"/uploads/events/"+ data[i]['meta'] +"\" class=\"img img-responsive\">";
-                    slide += "</div>";
-                    slide += "<div class=\"carousel-desc\">";
-                    slide += "<h2>"+data[i]['title']+"</h2><p>";
-                    slide += data[i]['details'];
-                    slide += "</p>";
-                    slide += "<button type=\"button\" class=\"btn btn-primary\" id=\"startup\">Read more</button>";
-                    slide += "</div></div></div></div>";
-                }
-                console.log(slide);
-                container.html(slide);
-                container_indicator.html(indicator);
-                $('#myCarousel').carousel()
-            },
-            error:function(){
-                alert("It seems like you are not connected to the internet");
-            }
-        });
-    });
+    // var loadEvents = function() {
+    //     $("#events_navbar").addClass("active");
+    //     $.ajax({
+    //             url: '/events/get_events_list',
+    //             success: function(data){
+    //                 var container = $('#events_container');
+    //                 var container_indicator = $('#events_indicator');
+    //                 var slide = '';
+    //                 var indicator = '';
+    //                 for(i in data){
+    //                     if(i != 0){
+    //                             //slide += "<div class=\"item item"+(parseInt(i)+1)+" active\">";
+    //                             //indicator = "<li data-target=\"#myCarousel\" data-slide-to=\""+i+"\" class=\"active\"></li>";
+
+    //                         slide += "<div class=\"item item"+(parseInt(i)+1)+"\">";
+    //                         indicator += "<li data-target=\"#myCarousel\" data-slide-to=\""+i+"\"></li>";
+    //                         slide += "<div class=\"fill\" style=\" background-color:#48c3af;\">";
+    //                         slide += "<div class=\"inner-content\">";
+    //                         slide += "<div class=\"carousel-img\">";
+    //                         slide += "<img src=\"/uploads/events/"+ data[i]['meta'] +"\" class=\"img img-responsive\" />";
+    //                         slide += "</div>";
+    //                         slide += "<div class=\"carousel-desc\">";
+    //                         slide += "<h2>"+data[i]['title']+"</h2><p>";
+    //                         slide += data[i]['description'];
+    //                         slide += "</p>";
+    //                         slide += "<button type=\"button\" class=\"btn btn-primary\" id=\"startup\">Read more</button>";
+    //                         slide += "</div></div></div></div>";
+    //                         console.log(i);
+    //                     }
+    //                 }
+    //                 console.log(slide);
+    //                 container.append(slide);
+    //                 container_indicator.append(indicator);
+    //                 $('#myCarousel').carousel();
+    //             },
+    //             error:function(){
+    //                 alert("It seems like you are not connected to the internet");
+    //             }
+            
+    //         });
+    //         $('#myCarousel').carousel({
+    //             interval:5000
+    //         }); 
+    //     }
 </script>
 @endsection

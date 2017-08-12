@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>E-summit '17</title>
-    <link rel="shortcut icon" href="img/logo-final.png" type="image/x-icon">
+    <title>E-Summit '17 | @section('title')</title>
+    <link rel="shortcut icon" href="/images/logo-final.png" type="image/x-icon">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Owl -->
@@ -25,15 +25,27 @@
     <link href="/css/carousel.css" rel="stylesheet">
     <!-- Events -->
     <link href="/css/events.css" rel="stylesheet">
+    <!-- Team -->
+    <link href="/css/team.css" rel="stylesheet">
     <!--Font awesome -->
     <link href="/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <!-- Scripts -->
+        <script src="/js/jquery-1.11.1.min.js"></script>
+        <script src="/js/dots.js"></script>
+        <script src="/js/modernizr.min.js"></script>
+        <script src="/js/owl.carousel.min.js"></script>
+        <script src="/js/typed.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="/js/jquery.onepagenav.js"></script>
+        <script src="/js/main.js"></script>
+        <script src="/js/login.js"></script>
 </head>
 
 <body>
     
-    <!-- <div class="preloader">
+     <div class="preloader">
         <img src="/images/ecell.png" alt="E-Cell NIT Raipur" height="200px" width="200px">
-    </div> -->
+    </div> 
     <!-- NavBar -->
     <nav class="navbar sidebar" role="navigation">
         <div class="container-fluid">
@@ -53,7 +65,7 @@
                     <li id="vision_navbar" ><a href="/vision">Vision<span style="font-size:16px;" class="pull-right hidden-xs showopacity 	glyphicon glyphicon-education"></span></a></li>
                     <li id="events_navbar"><a href="/events">Events<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-dashboard"></span></a></li>
                     <li id="team_navbar"><a href="/team">Team<span style="font-size:16px;" class="pull-right hidden-xs showopacity 	glyphicon glyphicon-user"></span></a></li>
-                    <li id="blogs_navbar"><a href="/blog">Blogs<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-dashboard"></span></a></li>
+                    <li id="blogs_navbar"><a href="/blogs">Blogs<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-dashboard"></span></a></li>
                 </ul>
                 </li>
                 </ul>
@@ -64,18 +76,8 @@
     <div class="main">
         @section('content')
         @show
-        <!-- Scripts -->
-        <script src="/js/jquery-1.11.1.min.js"></script>
-        <script src="/js/owl.carousel.min.js"></script>
-        <script src="/js/typed.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="/js/jquery.onepagenav.js"></script>
-        <script src="/js/main.js"></script>
-        <script src="/js/login.js"></script>
-        <script src="/js/carousel.js"></script>
     </div>
     @section("scripts")
     @show
 </body>
-
 </html>

@@ -1,12 +1,9 @@
 $(document).ready(function(){
 // invoke the carousel
-    $('#myCarousel').carousel({
-      interval:5000
-    }); 
+//loadEvents();
 });
 //animated  carousel start
 $(document).ready(function(){
-
 //to add  start animation on load for first slide 
 $(function(){
 		$.fn.extend({
